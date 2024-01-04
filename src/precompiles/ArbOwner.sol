@@ -89,4 +89,28 @@ interface ArbOwner {
 
     // Emitted when a successful call is made to this precompile
     event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
+
+    /// @notice Retrieves the list of tx.from in pricer
+    function getPricerTxFromAddrs() external view returns (address[] memory);
+
+    /// @notice Retrieves the list of tx.to in pricer
+    function getPricerTxToAddrs() external view returns (address[] memory);
+
+    /// @notice Add a tx.from to the pricer
+    function addPricerTxFrom(address addr) external;
+
+    /// @notice Add a tx.to to the pricer
+    function addPricerTxTo(address addr) external;
+
+    /// @notice See if the tx.from is in the pricer
+    function isPricerTxFrom(address addr) external view returns (bool);
+
+    /// @notice See if the tx.to is in the pricer
+    function isPricerTxTo(address addr) external view returns (bool);
+
+    /// @notice Remove tx.from from the pricer
+    function removePricerTxFrom(address addr) external;
+
+    // @notice Remove tx.to from the pricer
+    function removePricerTxTo(address addr) external;
 }
