@@ -128,7 +128,7 @@ async function deployAllContracts(
   ])
   const challengeManager = await deployContract('ChallengeManager', signer)
   const rollupAdmin = await deployContract('RollupAdminLogic', signer)
-  const rollupUser = await deployContract('RollupUserLogic', signer)
+  const erc20RollupUser = await deployContract('ERC20RollupUserLogic', signer)
   const upgradeExecutor = await deployUpgradeExecutor()
   const validatorUtils = await deployContract('ValidatorUtils', signer)
   const validatorWalletCreator = await deployContract(
@@ -146,7 +146,7 @@ async function deployAllContracts(
     osp,
     challengeManager,
     rollupAdmin,
-    rollupUser,
+    rollupUser: erc20RollupUser,
     upgradeExecutor,
     validatorUtils,
     validatorWalletCreator,

@@ -121,6 +121,7 @@ module.exports = {
     },
     arbSepolia: {
       url: 'https://sepolia-rollup.arbitrum.io/rpc',
+      timeout: 10000000,
       accounts: process.env['DEVNET_PRIVKEY']
         ? [process.env['DEVNET_PRIVKEY']]
         : [],
@@ -186,7 +187,7 @@ module.exports = {
     ],
   },
   mocha: {
-    timeout: 0,
+    timeout: 100000000,
   },
   gasReporter: {
     enabled: process.env.DISABLE_GAS_REPORTER ? false : true,

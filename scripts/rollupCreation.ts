@@ -64,13 +64,13 @@ export async function createRollup(feeToken?: string) {
     //// funds for deploying L2 factories
 
     // 0.13 ETH is enough to deploy L2 factories via retryables. Excess is refunded
-    let feeCost = ethers.utils.parseEther('0.13')
+    let feeCost = ethers.utils.parseEther('0.5')
     if (feeToken != ethers.constants.AddressZero) {
       // in case fees are paid via fee token, then approve rollup cretor to spend required amount
       await (
         await IERC20__factory.connect(feeToken, signer).approve(
           rollupCreator.address,
-          feeCost
+          feeCost,
         )
       ).wait()
       feeCost = BigNumber.from(0)
@@ -90,11 +90,12 @@ export async function createRollup(feeToken?: string) {
     const createRollupTx = await rollupCreator.createRollup(
       deployParams,
       {
-        value: feeCost,
+        gasLimit: 15000000,
       }
       
     )
     const createRollupReceipt = await createRollupTx.wait()
+    console.log(createRollupReceipt.transactionHash)
 
     const rollupCreatedEvent = createRollupReceipt.events?.find(
       (event: RollupCreatedEvent) =>
@@ -115,6 +116,7 @@ export async function createRollup(feeToken?: string) {
       const validatorUtils = rollupCreatedEvent.args?.validatorUtils
       const validatorWalletCreator =
         rollupCreatedEvent.args?.validatorWalletCreator
+      const upgradeExecutor = rollupCreatedEvent.args?.upgradeExecutor
 
       console.log("Congratulations! 🎉🎉🎉 All DONE! Here's your addresses:")
       console.log('RollupProxy Contract created at address:', rollupAddress)
@@ -138,27 +140,41 @@ export async function createRollup(feeToken?: string) {
           )
         }
       }
-      console.log('Inbox (proxy) Contract created at address:', inboxAddress)
-      console.log('Outbox (proxy) Contract created at address:', outbox)
-      console.log(
-        'rollupEventInbox (proxy) Contract created at address:',
-        rollupEventInbox
-      )
-      console.log(
-        'challengeManager (proxy) Contract created at address:',
-        challengeManager
-      )
-      console.log('AdminProxy Contract created at address:', adminProxy)
-      console.log('SequencerInbox (proxy) created at address:', sequencerInbox)
-      console.log('Bridge (proxy) Contract created at address:', bridge)
-      console.log('ValidatorUtils Contract created at address:', validatorUtils)
-      console.log(
-        'ValidatorWalletCreator Contract created at address:',
-        validatorWalletCreator
-      )
 
-      const blockNumber = createRollupReceipt.blockNumber
-      console.log('All deployed at block number:', blockNumber)
+      if (feeToken != ethers.constants.AddressZero) {
+        await (
+          await IERC20__factory.connect(feeToken, signer).approve(
+            rollupAddress,
+            ethers.constants.MaxUint256
+          )
+        ).wait()
+      }
+
+      console.log(`"chainId": "${config.rollupConfig.chainId}",`)
+      console.log(`"utils": "${validatorUtils}",`)
+      console.log(`"rollup": "${rollupAddress}",`)
+      console.log(`"inbox": "${inboxAddress}",`)
+      console.log(`"outbox": "${outbox}",`)
+      console.log(`"rollupEventInbox": "${rollupEventInbox}",`)
+      console.log(`"challengeManager": "${challengeManager}",`)
+      console.log(`"adminProxy": "${adminProxy}",`)
+      console.log(`"sequencerInbox": "${sequencerInbox}",`)
+      console.log(`"bridge": "${bridge}",`)
+      console.log(`"upgradeExecutor": "${upgradeExecutor}",`)
+      console.log(`"validatorUtils": "${validatorUtils}",`)
+      console.log(`"validatorWalletCreator": "${validatorWalletCreator}",`)
+      console.log(`"deployedAtBlockNumber": "${createRollupReceipt.blockNumber}"\n`)
+
+      const rollup = {
+        "bridge": bridge,
+        "inbox": inboxAddress,
+        "sequencer-inbox": sequencerInbox,
+        "rollup": rollupAddress,
+        "validator-utils": validatorUtils,
+        "validator-wallet-creator": validatorWalletCreator,
+        "deployed-at": createRollupReceipt.blockNumber,
+      }
+      console.log(JSON.stringify(rollup))
     } else {
       console.error('RollupCreated event not found')
     }
