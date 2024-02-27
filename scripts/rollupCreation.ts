@@ -85,7 +85,7 @@ export async function createRollup(feeToken?: string) {
       maxDataSize: maxDataSize,
       nativeToken: feeToken,
       deployFactoriesToL2: true,
-      maxFeePerGasForRetryables: MAX_FER_PER_GAS
+      maxFeePerGasForRetryables: MAX_FER_PER_GAS,
     }
     const createRollupTx = await rollupCreator.createRollup(
       deployParams,
