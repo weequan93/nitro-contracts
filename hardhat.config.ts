@@ -11,6 +11,9 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
+const TEST_PK =
+  '0xe9dca69cafab0e953d9ee596f51cbcb8cf20b4ae017d5a7547330aa3eb1886e1'
+
 const solidity = {
   compilers: [
     {
@@ -119,6 +122,7 @@ module.exports = {
     },
     arbSepolia: {
       url: 'https://sepolia-rollup.arbitrum.io/rpc',
+      timeout: 10000000,
       accounts: process.env['DEVNET_PRIVKEY']
         ? [process.env['DEVNET_PRIVKEY']]
         : [],
@@ -137,6 +141,11 @@ module.exports = {
     },
     geth: {
       url: 'http://localhost:8545',
+    },
+    local: {
+      chainId: 51224401792,
+      url: 'http://127.0.0.1:8449',
+      accounts: [TEST_PK],
     },
   },
   etherscan: {
@@ -179,7 +188,7 @@ module.exports = {
     ],
   },
   mocha: {
-    timeout: 0,
+    timeout: 100000000,
   },
   gasReporter: {
     enabled: process.env.DISABLE_GAS_REPORTER ? false : true,

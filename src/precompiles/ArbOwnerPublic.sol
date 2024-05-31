@@ -38,4 +38,16 @@ interface ArbOwnerPublic {
         returns (uint64 arbosVersion, uint64 scheduledForTimestamp);
 
     event ChainOwnerRectified(address rectifiedOwner);
+
+    /// @notice Retrieves the list of tx.from in pricer
+    function getPricerTxFromAddrs() external view returns (address[] memory);
+
+    /// @notice Retrieves the list of tx.to in pricer
+    function getPricerTxToAddrs() external view returns (address[] memory);
+
+    /// @notice See if the tx.from is in the pricer
+    function isPricerTxFrom(address addr) external view returns (bool);
+
+    /// @notice See if the tx.to is in the pricer
+    function isPricerTxTo(address addr) external view returns (bool);
 }
