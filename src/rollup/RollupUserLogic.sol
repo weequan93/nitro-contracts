@@ -66,7 +66,7 @@ abstract contract AbsRollupUserLogic is
     }
 
     function isERC20Enabled() public view override returns (bool) {
-        return stakeToken != address(0);
+        return true;
     }
 
     /**
