@@ -55,6 +55,7 @@
     "@openzeppelin/contracts-upgradeable": "4.5.2",
     "patch-package": "^6.4.7",
     "solady": "0.0.182"
+    "viem": "^1.18.0"
   },
   "private": false,
   "devDependencies": {

@@ -256,6 +256,10 @@ export async function deployAllContracts(
       verify
     )
   }
+
+  const erc20RollupUser = await deployContract('ERC20RollupUserLogic', signer)
+
+
   return {
     bridgeCreator,
     prover0,
@@ -265,7 +269,7 @@ export async function deployAllContracts(
     osp,
     challengeManager,
     rollupAdmin,
-    rollupUser,
+    rollupUser: erc20RollupUser,
     upgradeExecutor,
     validatorUtils,
     validatorWalletCreator,

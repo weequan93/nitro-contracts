@@ -82,7 +82,7 @@ export async function createRollup(
   try {
     //// funds for deploying L2 factories
     // 0.13 ETH is enough to deploy L2 factories via retryables. Excess is refunded
-    let feeCost = ethers.utils.parseEther('0.13')
+    let feeCost = ethers.utils.parseEther('0.5')
     if (feeToken != ethers.constants.AddressZero) {
       // in case fees are paid via fee token, then approve rollup cretor to spend required amount
       feeCost = await _getPrescaledAmount(
@@ -92,7 +92,7 @@ export async function createRollup(
       await (
         await IERC20__factory.connect(feeToken, signer).approve(
           rollupCreator.address,
-          feeCost
+          feeCost,
         )
       ).wait()
       feeCost = BigNumber.from(0)
@@ -117,6 +117,7 @@ export async function createRollup(
       value: feeCost,
     })
     const createRollupReceipt = await createRollupTx.wait()
+    console.log(createRollupReceipt.transactionHash)
 
     const rollupCreatedEvent = createRollupReceipt.events?.find(
       (event: RollupCreatedEvent) =>
@@ -139,6 +140,7 @@ export async function createRollup(
       const validatorUtils = rollupCreatedEvent.args?.validatorUtils
       const validatorWalletCreator =
         rollupCreatedEvent.args?.validatorWalletCreator
+      const upgradeExecutor = rollupCreatedEvent.args?.upgradeExecutor
 
       console.log("Congratulations! 🎉🎉🎉 All DONE! Here's your addresses:")
       console.log('RollupProxy Contract created at address:', rollupAddress)
