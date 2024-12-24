@@ -4,36 +4,36 @@
 
 pragma solidity >=0.4.21 <0.9.0;
 
-struct SignData {
-    uint256 userId;
-    address wallet;
-}
-// Primary type: HyperliquidTransaction:ApproveAgent
-// HyperliquidChain
-// parent nonce
-// timestamp
-// sub-address
-/// @title Provides non-owners with info about the current chain owners.
+/// @title Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave.
 /// @notice Precompiled contract that exists in every Arbitrum chain at 0x00000000000000000000000000000000000007E9.
-
 interface DeriwSubAccountPublic {
     /**
      * @notice bind relationship between parent-sub account
-     * Sub submitted the signature of the parent, verify content and update the relationship
+     * Sub-account submitted the signature of the parent, verify content and update the relationship
      * replace existing relationship if existed
      */
-    function GrantAccountControl(bytes memory signData, bytes memory signature)
-        external;
+    function grantAccountControl(bytes calldata signData, bytes calldata signature) external;
 
     /**
-     * @notice revoke relationship between parent-sub account
-     * Sub submitted the signature of the parent, verify content and update the relationship
+     * @notice revoke relationship between parent and sub-account
+     * Sub-account submitted the signature of the parent, verify content and update the relationship
      */
-    function RevokeAccountControl(bytes memory signData, bytes memory signature)
-        external;
+    function revokeAccountControl(bytes calldata signData, bytes calldata signature) external;
 
     /**
-     * @notice read the parent account relation from relationship record
+     * @notice Check which parent account is control by child address
      */
-    function ReadAccountControl(address addr) external  returns (address);
+    function readAccountControl(address childAddress) external view returns (address);
+
+    /**
+     * @notice Check either sub-account session is still valid
+     */
+//    function isValidAccountSession(address addr)
+//        external
+//        view
+//    returns (
+//            bool,
+//            uint256,
+//            int256    
+//        );
 }

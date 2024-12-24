@@ -1,0 +1,188 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "manager",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "codehash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "cached",
+						"type": "bool"
+					}
+				],
+				"name": "UpdateProgramCache",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "allCacheManagers",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "managers",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "codehash",
+						"type": "bytes32"
+					}
+				],
+				"name": "cacheCodehash",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "cacheProgram",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "codehash",
+						"type": "bytes32"
+					}
+				],
+				"name": "codehashIsCached",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "codehash",
+						"type": "bytes32"
+					}
+				],
+				"name": "evictCodehash",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "manager",
+						"type": "address"
+					}
+				],
+				"name": "isCacheManager",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"allCacheManagers()": {
+					"returns": {
+						"managers": "the list of managers."
+					}
+				},
+				"cacheCodehash(bytes32)": {
+					"details": "Deprecated, replaced with cacheProgram"
+				}
+			},
+			"title": "Methods for managing Stylus caches",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"allCacheManagers()": {
+					"notice": "Retrieve all address managers."
+				},
+				"cacheProgram(address)": {
+					"notice": "Caches all programs with a codehash equal to the given address.Reverts if the programs have expired.Caller must be a cache manager or chain owner.If you're looking for how to bid for position, interact with the chain's cache manager contract."
+				},
+				"codehashIsCached(bytes32)": {
+					"notice": "Gets whether a program is cached. Note that the program may be expired."
+				},
+				"evictCodehash(bytes32)": {
+					"notice": "Evicts all programs with the given codehash.Caller must be a cache manager or chain owner."
+				},
+				"isCacheManager(address)": {
+					"notice": "See if the user is a cache manager."
+				}
+			},
+			"notice": "Precompiled contract that exists in every Arbitrum chain at 0x0000000000000000000000000000000000000072.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/precompiles/ArbWasmCache.sol": "ArbWasmCache"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/precompiles/ArbWasmCache.sol": {
+			"keccak256": "0x27a520760255cc19988cdf5ec61f7b17814d1f46febf19d611bad824f313fb50",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://dcb9e6ec79b1213bc3cb8ac0d0362eef4548ef791775b90a426a225d245b5595",
+				"dweb:/ipfs/QmeDFSq16frygf5UGK1dRDuiYyZa8nn9tf3MZ5HgYmiCt7"
+			]
+		}
+	},
+	"version": 1
+}

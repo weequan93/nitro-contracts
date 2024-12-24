@@ -4,32 +4,31 @@
 
 pragma solidity >=0.4.21 <0.9.0;
 
-/// @title Provides non-owners with info about the current chain owners.
-/// @notice Precompiled contract that exists in every Arbitrum chain at 0x00000000000000000000000000000000000007E7.
+/// @title Provides non-owners with info about the gasless configuration.
+/// @notice Precompiled contract that exists in deriw chain at 0x00000000000000000000000000000000000007E7.
 interface DeriwGaslessPublic {
-    /// @notice See if the user is a chain owner
-    function IsGaslessOwner(address addr) external view returns (bool);
+    /// @notice See if the user is a gasless owner
+    function isGaslessOwner(address addr) external view returns (bool);
 
     /**
-     * @notice Rectify the list of chain owners
-     * If successful, emits ChainOwnerRectified event
+     * @notice Rectify the list of gasless owners
+     * If successful, emits GaslessOwnerRectified event
      * Available in ArbOS version 11
      */
     function rectifyGaslessOwner(address ownerToRectify) external;
 
-       /// @notice Retrieves the list of chain owners
+    /// @notice Retrieves the list of gasless owners
     function getAllGaslessOwners() external view returns (address[] memory);
 
-
-    /// @notice Retrieves the list of tx.from in pricer
+    /// @notice Retrieves the allowed list of gasless transaction (sender, tx.from)
     function getPricerTxFromAddrs() external view returns (address[] memory);
 
-    /// @notice Retrieves the list of tx.to in pricer
+    /// @notice Retrieves the allowed list of gasless transaction (interacted smart contract, tx.to)
     function getPricerTxToAddrs() external view returns (address[] memory);
 
-    /// @notice See if the tx.from is in the pricer
+    /// @notice See if the address is allowed tx.from for gasless transaction
     function isPricerTxFrom(address addr) external view returns (bool);
 
-    /// @notice See if the tx.to is in the pricer
+    /// @notice See if the  address is allowed tx.to for gasless transaction
     function isPricerTxTo(address addr) external view returns (bool);
 }

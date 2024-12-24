@@ -1,0 +1,179 @@
+{
+	"compiler": {
+		"version": "0.8.16+commit.07a7930e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getAllGaslessOwners",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPricerTxFromAddrs",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPricerTxToAddrs",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isGaslessOwner",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isPricerTxFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isPricerTxTo",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "ownerToRectify",
+						"type": "address"
+					}
+				],
+				"name": "rectifyGaslessOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"title": "Provides non-owners with info about the gasless configuration.",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getAllGaslessOwners()": {
+					"notice": "Retrieves the list of gasless owners"
+				},
+				"getPricerTxFromAddrs()": {
+					"notice": "Retrieves the allowed list of gasless transaction (sender, tx.from)"
+				},
+				"getPricerTxToAddrs()": {
+					"notice": "Retrieves the allowed list of gasless transaction (interacted smart contract, tx.to)"
+				},
+				"isGaslessOwner(address)": {
+					"notice": "See if the user is a gasless owner"
+				},
+				"isPricerTxFrom(address)": {
+					"notice": "See if the address is allowed tx.from for gasless transaction"
+				},
+				"isPricerTxTo(address)": {
+					"notice": "See if the  address is allowed tx.to for gasless transaction"
+				},
+				"rectifyGaslessOwner(address)": {
+					"notice": "Rectify the list of gasless owners If successful, emits GaslessOwnerRectified event Available in ArbOS version 11"
+				}
+			},
+			"notice": "Precompiled contract that exists in deriw chain at 0x00000000000000000000000000000000000007E7.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/precompiles/DeriwGaslessPublic.sol": "DeriwGaslessPublic"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/precompiles/DeriwGaslessPublic.sol": {
+			"keccak256": "0x0cab99916b90bc73a51bcc96ff2c3ad534f3cfd0de553976f436dd0de302c664",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://031a2b036a4e7c3ad87703b933c7ce854f88ffff53154c84e7f0283b3fae3313",
+				"dweb:/ipfs/QmQ7c1UeZ8gwFaurMCC7X2o8AmRtBKxWhCaLuDY6pwj4ij"
+			]
+		}
+	},
+	"version": 1
+}

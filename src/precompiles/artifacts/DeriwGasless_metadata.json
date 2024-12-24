@@ -1,0 +1,281 @@
+{
+	"compiler": {
+		"version": "0.8.16+commit.07a7930e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes4",
+						"name": "method",
+						"type": "bytes4"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "OwnerActs",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "addGaslessOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "addPricerTxFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "addPricerTxTo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllGaslessOwners",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPricerTxFromAddrs",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPricerTxToAddrs",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isGaslessOwner",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isPricerTxFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isPricerTxTo",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "ownerToRemove",
+						"type": "address"
+					}
+				],
+				"name": "removeGaslessOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "removePricerTxFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "removePricerTxTo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"title": "Provides owners with tools for managing the gasless configuration.",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"addGaslessOwner(address)": {
+					"notice": "Add account as a gasless owner"
+				},
+				"addPricerTxFrom(address)": {
+					"notice": "Add a address that can send (tx.to) gasless transaction"
+				},
+				"addPricerTxTo(address)": {
+					"notice": "Add a address tx.to is gasless transaction"
+				},
+				"getAllGaslessOwners()": {
+					"notice": "Retrieves the list of gasless owners"
+				},
+				"getPricerTxFromAddrs()": {
+					"notice": "Retrieves the allowed list of gasless transaction (sender, tx.from)"
+				},
+				"getPricerTxToAddrs()": {
+					"notice": "Retrieves the allowed list of gasless transaction (interacted smart contract, tx.to)"
+				},
+				"isGaslessOwner(address)": {
+					"notice": "See if the user is a gasless owner"
+				},
+				"isPricerTxFrom(address)": {
+					"notice": "See if the tx.from address is in the gasless transaction"
+				},
+				"isPricerTxTo(address)": {
+					"notice": "See if the tx.to is in the gasless transaction"
+				},
+				"removeGaslessOwner(address)": {
+					"notice": "Remove account from the list of gasless owners"
+				},
+				"removePricerTxFrom(address)": {
+					"notice": "Remove tx.from address from the gasless sender"
+				}
+			},
+			"notice": "Calls by non-owners will always revert. Precompiled contract that exists in Deriw chain at 0x00000000000000000000000000000000000007E8.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/precompiles/DeriwGasless.sol": "DeriwGasless"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/precompiles/DeriwGasless.sol": {
+			"keccak256": "0x3bfe05527f265d7528222850e112a8d7d6d9ec413cf8ae4eecaf0973219dcb66",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://fc4e4cbcaad2263817c6d741fad2730fc320269aefb10b98f1c4778bceea77ff",
+				"dweb:/ipfs/QmUeiUsqHvGNA2VZ43ckaPJzJWNJw2YbMcNodFtH5SVUS5"
+			]
+		}
+	},
+	"version": 1
+}

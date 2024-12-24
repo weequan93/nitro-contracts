@@ -1,0 +1,2577 @@
+{
+	"compiler": {
+		"version": "0.8.16+commit.07a7930e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "previousAdmin",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "AdminChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "beacon",
+						"type": "address"
+					}
+				],
+				"name": "BeaconUpgraded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint64",
+						"name": "nodeNum",
+						"type": "uint64"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "blockHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "sendRoot",
+						"type": "bytes32"
+					}
+				],
+				"name": "NodeConfirmed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint64",
+						"name": "nodeNum",
+						"type": "uint64"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "parentNodeHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "nodeHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "executionHash",
+						"type": "bytes32"
+					},
+					{
+						"components": [
+							{
+								"components": [
+									{
+										"components": [
+											{
+												"internalType": "bytes32[2]",
+												"name": "bytes32Vals",
+												"type": "bytes32[2]"
+											},
+											{
+												"internalType": "uint64[2]",
+												"name": "u64Vals",
+												"type": "uint64[2]"
+											}
+										],
+										"internalType": "struct GlobalState",
+										"name": "globalState",
+										"type": "tuple"
+									},
+									{
+										"internalType": "enum MachineStatus",
+										"name": "machineStatus",
+										"type": "uint8"
+									}
+								],
+								"internalType": "struct ExecutionState",
+								"name": "beforeState",
+								"type": "tuple"
+							},
+							{
+								"components": [
+									{
+										"components": [
+											{
+												"internalType": "bytes32[2]",
+												"name": "bytes32Vals",
+												"type": "bytes32[2]"
+											},
+											{
+												"internalType": "uint64[2]",
+												"name": "u64Vals",
+												"type": "uint64[2]"
+											}
+										],
+										"internalType": "struct GlobalState",
+										"name": "globalState",
+										"type": "tuple"
+									},
+									{
+										"internalType": "enum MachineStatus",
+										"name": "machineStatus",
+										"type": "uint8"
+									}
+								],
+								"internalType": "struct ExecutionState",
+								"name": "afterState",
+								"type": "tuple"
+							},
+							{
+								"internalType": "uint64",
+								"name": "numBlocks",
+								"type": "uint64"
+							}
+						],
+						"indexed": false,
+						"internalType": "struct Assertion",
+						"name": "assertion",
+						"type": "tuple"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "afterInboxBatchAcc",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "wasmModuleRoot",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "inboxMaxCount",
+						"type": "uint256"
+					}
+				],
+				"name": "NodeCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint64",
+						"name": "nodeNum",
+						"type": "uint64"
+					}
+				],
+				"name": "NodeRejected",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "OwnerFunctionCalled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Paused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint64",
+						"name": "challengeIndex",
+						"type": "uint64"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "asserter",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "challenger",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint64",
+						"name": "challengedNode",
+						"type": "uint64"
+					}
+				],
+				"name": "RollupChallengeStarted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "machineHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "chainId",
+						"type": "uint256"
+					}
+				],
+				"name": "RollupInitialized",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Unpaused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "implementation",
+						"type": "address"
+					}
+				],
+				"name": "Upgraded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "implementation",
+						"type": "address"
+					}
+				],
+				"name": "UpgradedSecondary",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "initialBalance",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "finalBalance",
+						"type": "uint256"
+					}
+				],
+				"name": "UserStakeUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "initialBalance",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "finalBalance",
+						"type": "uint256"
+					}
+				],
+				"name": "UserWithdrawableFundsUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "_stakerMap",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "amountStaked",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint64",
+						"name": "index",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint64",
+						"name": "latestStakedNode",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint64",
+						"name": "currentChallenge",
+						"type": "uint64"
+					},
+					{
+						"internalType": "bool",
+						"name": "isStaked",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "staker",
+						"type": "address"
+					}
+				],
+				"name": "amountStaked",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "anyTrustFastConfirmer",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "baseStake",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "bridge",
+				"outputs": [
+					{
+						"internalType": "contract IBridge",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "chainId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "challengeManager",
+				"outputs": [
+					{
+						"internalType": "contract IChallengeManager",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "confirmPeriodBlocks",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"components": [
+									{
+										"components": [
+											{
+												"internalType": "bytes32[2]",
+												"name": "bytes32Vals",
+												"type": "bytes32[2]"
+											},
+											{
+												"internalType": "uint64[2]",
+												"name": "u64Vals",
+												"type": "uint64[2]"
+											}
+										],
+										"internalType": "struct GlobalState",
+										"name": "globalState",
+										"type": "tuple"
+									},
+									{
+										"internalType": "enum MachineStatus",
+										"name": "machineStatus",
+										"type": "uint8"
+									}
+								],
+								"internalType": "struct ExecutionState",
+								"name": "beforeState",
+								"type": "tuple"
+							},
+							{
+								"components": [
+									{
+										"components": [
+											{
+												"internalType": "bytes32[2]",
+												"name": "bytes32Vals",
+												"type": "bytes32[2]"
+											},
+											{
+												"internalType": "uint64[2]",
+												"name": "u64Vals",
+												"type": "uint64[2]"
+											}
+										],
+										"internalType": "struct GlobalState",
+										"name": "globalState",
+										"type": "tuple"
+									},
+									{
+										"internalType": "enum MachineStatus",
+										"name": "machineStatus",
+										"type": "uint8"
+									}
+								],
+								"internalType": "struct ExecutionState",
+								"name": "afterState",
+								"type": "tuple"
+							},
+							{
+								"internalType": "uint64",
+								"name": "numBlocks",
+								"type": "uint64"
+							}
+						],
+						"internalType": "struct Assertion",
+						"name": "assertion",
+						"type": "tuple"
+					}
+				],
+				"name": "createNitroMigrationGenesis",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "staker",
+						"type": "address"
+					}
+				],
+				"name": "currentChallenge",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "extraChallengeTimeBlocks",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "firstUnresolvedNode",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "nodeNum",
+						"type": "uint64"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "blockHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "sendRoot",
+						"type": "bytes32"
+					}
+				],
+				"name": "forceConfirmNode",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "prevNode",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint256",
+						"name": "prevNodeInboxMaxCount",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"components": [
+									{
+										"components": [
+											{
+												"internalType": "bytes32[2]",
+												"name": "bytes32Vals",
+												"type": "bytes32[2]"
+											},
+											{
+												"internalType": "uint64[2]",
+												"name": "u64Vals",
+												"type": "uint64[2]"
+											}
+										],
+										"internalType": "struct GlobalState",
+										"name": "globalState",
+										"type": "tuple"
+									},
+									{
+										"internalType": "enum MachineStatus",
+										"name": "machineStatus",
+										"type": "uint8"
+									}
+								],
+								"internalType": "struct ExecutionState",
+								"name": "beforeState",
+								"type": "tuple"
+							},
+							{
+								"components": [
+									{
+										"components": [
+											{
+												"internalType": "bytes32[2]",
+												"name": "bytes32Vals",
+												"type": "bytes32[2]"
+											},
+											{
+												"internalType": "uint64[2]",
+												"name": "u64Vals",
+												"type": "uint64[2]"
+											}
+										],
+										"internalType": "struct GlobalState",
+										"name": "globalState",
+										"type": "tuple"
+									},
+									{
+										"internalType": "enum MachineStatus",
+										"name": "machineStatus",
+										"type": "uint8"
+									}
+								],
+								"internalType": "struct ExecutionState",
+								"name": "afterState",
+								"type": "tuple"
+							},
+							{
+								"internalType": "uint64",
+								"name": "numBlocks",
+								"type": "uint64"
+							}
+						],
+						"internalType": "struct Assertion",
+						"name": "assertion",
+						"type": "tuple"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "expectedNodeHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "forceCreateNode",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "staker",
+						"type": "address[]"
+					}
+				],
+				"name": "forceRefundStaker",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "stakerA",
+						"type": "address[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "stakerB",
+						"type": "address[]"
+					}
+				],
+				"name": "forceResolveChallenge",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "nodeNum",
+						"type": "uint64"
+					}
+				],
+				"name": "getNode",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "stateHash",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "challengeHash",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "confirmData",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "uint64",
+								"name": "prevNum",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "deadlineBlock",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "noChildConfirmedBeforeBlock",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "stakerCount",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "childStakerCount",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "firstChildBlock",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "latestChildNumber",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "createdAtBlock",
+								"type": "uint64"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "nodeHash",
+								"type": "bytes32"
+							}
+						],
+						"internalType": "struct Node",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "nodeNum",
+						"type": "uint64"
+					}
+				],
+				"name": "getNodeCreationBlockForLogLookup",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "staker",
+						"type": "address"
+					}
+				],
+				"name": "getStaker",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "amountStaked",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint64",
+								"name": "index",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "latestStakedNode",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "currentChallenge",
+								"type": "uint64"
+							},
+							{
+								"internalType": "bool",
+								"name": "isStaked",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct IRollupCore.Staker",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "stakerNum",
+						"type": "uint64"
+					}
+				],
+				"name": "getStakerAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "inbox",
+				"outputs": [
+					{
+						"internalType": "contract IInboxBase",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint64",
+								"name": "confirmPeriodBlocks",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "extraChallengeTimeBlocks",
+								"type": "uint64"
+							},
+							{
+								"internalType": "address",
+								"name": "stakeToken",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "baseStake",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "wasmModuleRoot",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "loserStakeEscrow",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "chainId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "chainConfig",
+								"type": "string"
+							},
+							{
+								"internalType": "uint64",
+								"name": "genesisBlockNum",
+								"type": "uint64"
+							},
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "delayBlocks",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "futureBlocks",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "delaySeconds",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "futureSeconds",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct ISequencerInbox.MaxTimeVariation",
+								"name": "sequencerInboxMaxTimeVariation",
+								"type": "tuple"
+							}
+						],
+						"internalType": "struct Config",
+						"name": "config",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "contract IBridge",
+								"name": "bridge",
+								"type": "address"
+							},
+							{
+								"internalType": "contract ISequencerInbox",
+								"name": "sequencerInbox",
+								"type": "address"
+							},
+							{
+								"internalType": "contract IInboxBase",
+								"name": "inbox",
+								"type": "address"
+							},
+							{
+								"internalType": "contract IOutbox",
+								"name": "outbox",
+								"type": "address"
+							},
+							{
+								"internalType": "contract IRollupEventInbox",
+								"name": "rollupEventInbox",
+								"type": "address"
+							},
+							{
+								"internalType": "contract IChallengeManager",
+								"name": "challengeManager",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "rollupAdminLogic",
+								"type": "address"
+							},
+							{
+								"internalType": "contract IRollupUser",
+								"name": "rollupUserLogic",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "validatorUtils",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "validatorWalletCreator",
+								"type": "address"
+							}
+						],
+						"internalType": "struct ContractDependencies",
+						"name": "connectedContracts",
+						"type": "tuple"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "staker",
+						"type": "address"
+					}
+				],
+				"name": "isStaked",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "staker",
+						"type": "address"
+					}
+				],
+				"name": "isStakedOnLatestConfirmed",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "isValidator",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "staker",
+						"type": "address"
+					}
+				],
+				"name": "isZombie",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastStakeBlock",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "latestConfirmed",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "latestNodeCreated",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "staker",
+						"type": "address"
+					}
+				],
+				"name": "latestStakedNode",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "loserStakeEscrow",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "minimumAssertionPeriod",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "nodeNum",
+						"type": "uint64"
+					},
+					{
+						"internalType": "address",
+						"name": "staker",
+						"type": "address"
+					}
+				],
+				"name": "nodeHasStaker",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "outbox",
+				"outputs": [
+					{
+						"internalType": "contract IOutbox",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "proxiableUUID",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_outbox",
+						"type": "address"
+					}
+				],
+				"name": "removeOldOutbox",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "resume",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rollupDeploymentBlock",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rollupEventInbox",
+				"outputs": [
+					{
+						"internalType": "contract IRollupEventInbox",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sequencerInbox",
+				"outputs": [
+					{
+						"internalType": "contract ISequencerInbox",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_anyTrustFastConfirmer",
+						"type": "address"
+					}
+				],
+				"name": "setAnyTrustFastConfirmer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newBaseStake",
+						"type": "uint256"
+					}
+				],
+				"name": "setBaseStake",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "newConfirmPeriod",
+						"type": "uint64"
+					}
+				],
+				"name": "setConfirmPeriodBlocks",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_inbox",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "_enabled",
+						"type": "bool"
+					}
+				],
+				"name": "setDelayedInbox",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "newExtraTimeBlocks",
+						"type": "uint64"
+					}
+				],
+				"name": "setExtraChallengeTimeBlocks",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IInboxBase",
+						"name": "newInbox",
+						"type": "address"
+					}
+				],
+				"name": "setInbox",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newLoserStakerEscrow",
+						"type": "address"
+					}
+				],
+				"name": "setLoserStakeEscrow",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newPeriod",
+						"type": "uint256"
+					}
+				],
+				"name": "setMinimumAssertionPeriod",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IOutbox",
+						"name": "_outbox",
+						"type": "address"
+					}
+				],
+				"name": "setOutbox",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "setOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_sequencerInbox",
+						"type": "address"
+					}
+				],
+				"name": "setSequencerInbox",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newStakeToken",
+						"type": "address"
+					}
+				],
+				"name": "setStakeToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "_validator",
+						"type": "address[]"
+					},
+					{
+						"internalType": "bool[]",
+						"name": "_val",
+						"type": "bool[]"
+					}
+				],
+				"name": "setValidator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_validatorWhitelistDisabled",
+						"type": "bool"
+					}
+				],
+				"name": "setValidatorWhitelistDisabled",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "newWasmModuleRoot",
+						"type": "bytes32"
+					}
+				],
+				"name": "setWasmModuleRoot",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "stakeToken",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "stakerCount",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalWithdrawableFunds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "beacon",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					}
+				],
+				"name": "upgradeBeacon",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					}
+				],
+				"name": "upgradeSecondaryTo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "upgradeSecondaryToAndCall",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					}
+				],
+				"name": "upgradeTo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "upgradeToAndCall",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "validatorUtils",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "validatorWalletCreator",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "validatorWhitelistDisabled",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "wasmModuleRoot",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "withdrawableFunds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "zombieNum",
+						"type": "uint256"
+					}
+				],
+				"name": "zombieAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "zombieCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "zombieNum",
+						"type": "uint256"
+					}
+				],
+				"name": "zombieLatestStakedNode",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"amountStaked(address)": {
+					"params": {
+						"staker": "Staker address to lookup"
+					},
+					"returns": {
+						"_0": "Amount staked of the staker"
+					}
+				},
+				"currentChallenge(address)": {
+					"params": {
+						"staker": "Staker address to lookup"
+					},
+					"returns": {
+						"_0": "Current challenge of the staker"
+					}
+				},
+				"firstUnresolvedNode()": {
+					"details": "If all nodes have been resolved, this will be latestNodeCreated + 1",
+					"returns": {
+						"_0": "Index of the first unresolved node"
+					}
+				},
+				"getNodeCreationBlockForLogLookup(uint64)": {
+					"details": "This function is meant for internal use only and has no stability guarantees."
+				},
+				"getStaker(address)": {
+					"params": {
+						"staker": "Staker address to retrieve"
+					},
+					"returns": {
+						"_0": "A structure with information about the requested staker"
+					}
+				},
+				"getStakerAddress(uint64)": {
+					"params": {
+						"stakerNum": "Index of the staker"
+					},
+					"returns": {
+						"_0": "Address of the staker"
+					}
+				},
+				"isStaked(address)": {
+					"params": {
+						"staker": "Staker address to check"
+					},
+					"returns": {
+						"_0": "True or False for whether the staker was staked"
+					}
+				},
+				"isStakedOnLatestConfirmed(address)": {
+					"params": {
+						"staker": "Staker address to check"
+					},
+					"returns": {
+						"_0": "True or False for whether the staker was staked"
+					}
+				},
+				"lastStakeBlock()": {
+					"returns": {
+						"_0": "Ethereum block that the most recent stake was created"
+					}
+				},
+				"latestConfirmed()": {
+					"returns": {
+						"_0": "Index of the latest confirmed node"
+					}
+				},
+				"latestNodeCreated()": {
+					"returns": {
+						"_0": "Index of the latest rollup node created"
+					}
+				},
+				"latestStakedNode(address)": {
+					"params": {
+						"staker": "Staker address to lookup"
+					},
+					"returns": {
+						"_0": "Latest node staked of the staker"
+					}
+				},
+				"pause()": {
+					"details": "this function may be frontrun by a validator (ie to create a node before the system is paused). The pause should be called atomically with required checks to be sure the system is paused in a consistent state. The RollupAdmin may execute a check against the Rollup's latest node num or the ChallengeManager, then execute this function atomically with it."
+				},
+				"paused()": {
+					"details": "Returns true if the contract is paused, and false otherwise."
+				},
+				"proxiableUUID()": {
+					"details": "Implementation of the ERC1822 {proxiableUUID} function. This returns the storage slot used by the implementation. It is used to validate that the this implementation remains valid after an upgrade. IMPORTANT: A proxy pointing at a proxiable contract should not be considered proxiable itself, because this risks bricking a proxy that upgrades to it, by delegating to itself until out of gas. Thus it is critical that this function revert if invoked through a proxy. This is guaranteed by the `notDelegated` modifier."
+				},
+				"removeOldOutbox(address)": {
+					"params": {
+						"_outbox": "Outbox contract to remove"
+					}
+				},
+				"setAnyTrustFastConfirmer(address)": {
+					"params": {
+						"_anyTrustFastConfirmer": "new value of anyTrustFastConfirmer"
+					}
+				},
+				"setBaseStake(uint256)": {
+					"params": {
+						"newBaseStake": "minimum amount of stake required"
+					}
+				},
+				"setConfirmPeriodBlocks(uint64)": {
+					"params": {
+						"newConfirmPeriod": "new number of blocks"
+					}
+				},
+				"setDelayedInbox(address,bool)": {
+					"params": {
+						"_enabled": "New status of inbox",
+						"_inbox": "Inbox contract to add or remove"
+					}
+				},
+				"setExtraChallengeTimeBlocks(uint64)": {
+					"params": {
+						"newExtraTimeBlocks": "new number of blocks"
+					}
+				},
+				"setInbox(address)": {
+					"params": {
+						"newInbox": "new address of inbox"
+					}
+				},
+				"setMinimumAssertionPeriod(uint256)": {
+					"params": {
+						"newPeriod": "new minimum period for assertions"
+					}
+				},
+				"setOutbox(address)": {
+					"params": {
+						"_outbox": "Outbox contract to add"
+					}
+				},
+				"setOwner(address)": {
+					"details": "it is expected that only the rollup admin can use this facet to set a new owner",
+					"params": {
+						"newOwner": "address of new rollup owner"
+					}
+				},
+				"setSequencerInbox(address)": {
+					"params": {
+						"_sequencerInbox": "new address of sequencer inbox"
+					}
+				},
+				"setStakeToken(address)": {
+					"details": "Before changing the base stake token, you might need to change the implementation of the Rollup User facet!",
+					"params": {
+						"newStakeToken": "address of token used for staking"
+					}
+				},
+				"setValidator(address[],bool[])": {
+					"details": "It is expected that both arrays are same length, and validator at position i corresponds to the value at position i",
+					"params": {
+						"_val": "value to set in the whitelist for corresponding address",
+						"_validator": "addresses to set in the whitelist"
+					}
+				},
+				"setValidatorWhitelistDisabled(bool)": {
+					"params": {
+						"_validatorWhitelistDisabled": "new value of validatorWhitelistDisabled, i.e. true = disabled"
+					}
+				},
+				"setWasmModuleRoot(bytes32)": {
+					"params": {
+						"newWasmModuleRoot": "new module root"
+					}
+				},
+				"stakerCount()": {
+					"returns": {
+						"_0": "Number of active stakers currently staked"
+					}
+				},
+				"upgradeBeacon(address,address)": {
+					"params": {
+						"beacon": "address of beacon to be upgraded",
+						"newImplementation": "new address of implementation"
+					}
+				},
+				"upgradeSecondaryTo(address)": {
+					"details": "Upgrade the secondary implementation of the proxy to `newImplementation`. Calls {_authorizeSecondaryUpgrade}. Emits an {UpgradedSecondary} event."
+				},
+				"upgradeSecondaryToAndCall(address,bytes)": {
+					"details": "Upgrade the secondary implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeSecondaryUpgrade}. Emits an {UpgradedSecondary} event."
+				},
+				"upgradeTo(address)": {
+					"details": "Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event."
+				},
+				"upgradeToAndCall(address,bytes)": {
+					"details": "Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event."
+				},
+				"withdrawableFunds(address)": {
+					"params": {
+						"user": "Address to check the funds of"
+					},
+					"returns": {
+						"_0": "Amount of funds withdrawable by user"
+					}
+				},
+				"zombieAddress(uint256)": {
+					"params": {
+						"zombieNum": "Index of the zombie to lookup"
+					},
+					"returns": {
+						"_0": "Original staker address of the zombie"
+					}
+				},
+				"zombieCount()": {
+					"returns": {
+						"_0": "Current number of un-removed zombies"
+					}
+				},
+				"zombieLatestStakedNode(uint256)": {
+					"params": {
+						"zombieNum": "Index of the zombie to lookup"
+					},
+					"returns": {
+						"_0": "Latest node that the given zombie is staked on"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"amountStaked(address)": {
+					"notice": "Get the amount staked of the given staker"
+				},
+				"currentChallenge(address)": {
+					"notice": "Get the current challenge of the given staker"
+				},
+				"getNode(uint64)": {
+					"notice": "Get the Node for the given index."
+				},
+				"getNodeCreationBlockForLogLookup(uint64)": {
+					"notice": "Returns the block in which the given node was created for looking up its creation event. Unlike the Node's createdAtBlock field, this will be the ArbSys blockNumber if the host chain is an Arbitrum chain. That means that the block number returned for this is usable for event queries. This function will revert if the given node number does not exist."
+				},
+				"getStaker(address)": {
+					"notice": "Retrieves stored information about a requested staker"
+				},
+				"getStakerAddress(uint64)": {
+					"notice": "Get the address of the staker at the given index"
+				},
+				"isStaked(address)": {
+					"notice": "Check whether the given staker is staked"
+				},
+				"isStakedOnLatestConfirmed(address)": {
+					"notice": "Check whether the given staker is staked on the latest confirmed node, which includes if the staker is staked on a descendent of the latest confirmed node."
+				},
+				"latestStakedNode(address)": {
+					"notice": "Get the latest staked node of the given staker"
+				},
+				"nodeHasStaker(uint64,address)": {
+					"notice": "Check if the specified node has been staked on by the provided staker. Only accurate at the latest confirmed node and afterwards."
+				},
+				"pause()": {
+					"notice": "Pause interaction with the rollup contract. The time spent paused is not incremented in the rollup's timing for node validation."
+				},
+				"removeOldOutbox(address)": {
+					"notice": "Disable an old outbox from interacting with the bridge"
+				},
+				"resume()": {
+					"notice": "Resume interaction with the rollup contract"
+				},
+				"setAnyTrustFastConfirmer(address)": {
+					"notice": "set the anyTrustFastConfirmer address         must also call `setValidator` to set the same address as a validator to work         old fast confirmer need to be removed from the validator list manually"
+				},
+				"setBaseStake(uint256)": {
+					"notice": "Set base stake required for an assertion"
+				},
+				"setConfirmPeriodBlocks(uint64)": {
+					"notice": "Set number of blocks until a node is considered confirmed"
+				},
+				"setDelayedInbox(address,bool)": {
+					"notice": "Enable or disable an inbox contract"
+				},
+				"setExtraChallengeTimeBlocks(uint64)": {
+					"notice": "Set number of extra blocks after a challenge"
+				},
+				"setInbox(address)": {
+					"notice": "sets the rollup's inbox reference. Does not update the bridge's view."
+				},
+				"setMinimumAssertionPeriod(uint256)": {
+					"notice": "Set minimum assertion period for the rollup"
+				},
+				"setOutbox(address)": {
+					"notice": "Add a contract authorized to put messages into this rollup's inbox"
+				},
+				"setOwner(address)": {
+					"notice": "Set a new owner address for the rollup"
+				},
+				"setSequencerInbox(address)": {
+					"notice": "set a new sequencer inbox contract"
+				},
+				"setStakeToken(address)": {
+					"notice": "Set the token used for stake, where address(0) == eth"
+				},
+				"setValidator(address[],bool[])": {
+					"notice": "Set the addresses of the validator whitelist"
+				},
+				"setValidatorWhitelistDisabled(bool)": {
+					"notice": "set the validatorWhitelistDisabled flag"
+				},
+				"setWasmModuleRoot(bytes32)": {
+					"notice": "Set the proving WASM module root"
+				},
+				"upgradeBeacon(address,address)": {
+					"notice": "Upgrades the implementation of a beacon controlled by the rollup"
+				},
+				"withdrawableFunds(address)": {
+					"notice": "Get the amount of funds withdrawable by the given address"
+				},
+				"zombieAddress(uint256)": {
+					"notice": "Get the original staker address of the zombie at the given index"
+				},
+				"zombieLatestStakedNode(uint256)": {
+					"notice": "Get Latest node that the given zombie at the given index is staked on"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/rollup/RollupAdminLogic.sol": "RollupAdminLogic"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
+			"keccak256": "0x372b0bc04e3b4c074559bbbfb1317afddb56de5504158ca25a7f9cd403980445",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://88b812365459a042c2aab5c689ff723098e0e19cb372718d3dd028b3c406e4f6",
+				"dweb:/ipfs/QmTsLrMYzPjnB85pyAy85NNcBg64RPVueJARzwNg9xMyR1"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol": {
+			"keccak256": "0x041af89e5e60b74e1203d5a34614c9de379726f52ecb8cf064cab78b9fdcdf9d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5a8e235e33979e564ee560e5e7c42f3d4c309698eae7b7035aaf65b0ce6253f9",
+				"dweb:/ipfs/QmQKdNPLcgR6LLtS9vDRXy8jeD7gCZDTfctXiTwu6HN7M1"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol": {
+			"keccak256": "0x55cf2bd9fc76704ddcdc19834cd288b7de00fc0f298a40ea16a954ae8991db2d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://37e4df53c8d2e3c1062c1c7b2c17366db7de03bfd2559d340ca95c588aa49c2f",
+				"dweb:/ipfs/QmQ9vsG3o4wED3FRogiSUhdzJvZSjjYFtydzXvFEJtgZk4"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol": {
+			"keccak256": "0x963ea7f0b48b032eef72fe3a7582edf78408d6f834115b9feadd673a4d5bd149",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d6520943ea55fdf5f0bafb39ed909f64de17051bc954ff3e88c9e5621412c79c",
+				"dweb:/ipfs/QmWZ4rAKTQbNG2HxGs46AcTXShsVytKeLs7CUCdCSv5N7a"
+			]
+		},
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0x24e0364e503a9bbde94c715d26573a76f14cd2a202d45f96f52134ab806b67b9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e12cbaa7378fd9b62280e4e1d164bedcb4399ce238f5f98fc0eefb7e50577981",
+				"dweb:/ipfs/QmXRoFGUgfsaRkoPT5bxNMtSayKTQ8GZATLPXf69HcRA51"
+			]
+		},
+		"@openzeppelin/contracts/interfaces/draft-IERC1822.sol": {
+			"keccak256": "0x1d4afe6cb24200cc4545eed814ecf5847277dfe5d613a1707aad5fceecebcfff",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://383fb7b8181016ac5ccf07bc9cdb7c1b5045ea36e2cc4df52bcbf20396fc7688",
+				"dweb:/ipfs/QmYJ7Cg4WmE3rR8KGQxjUCXFfTH6TcwZ2Z1f6tPrq7jHFr"
+			]
+		},
+		"@openzeppelin/contracts/proxy/ERC1967/ERC1967Upgrade.sol": {
+			"keccak256": "0xabf3f59bc0e5423eae45e459dbe92e7052c6983628d39008590edc852a62f94a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://89c2a0f70157c13845be5cb49b078a6374fee3a78fa950052a3af26190255da8",
+				"dweb:/ipfs/QmUcvMEQH1oMM2pUyMuDiBUKdvvnTz1NRB8bmPHrVq8725"
+			]
+		},
+		"@openzeppelin/contracts/proxy/Proxy.sol": {
+			"keccak256": "0x0edeb16b9821ae2b16e9d69c383b38d3ad2fbb3e0c06cf809a0786d96e602551",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://88adc865fb1bd8dab4c58096e1d5887713f62c0405f8d2d17294727a8f43d8f7",
+				"dweb:/ipfs/QmUJ27zsjxCatfoTFWho4k4qdhuBTorMqLuJzWqUX4Sdmg"
+			]
+		},
+		"@openzeppelin/contracts/proxy/beacon/IBeacon.sol": {
+			"keccak256": "0xd50a3421ac379ccb1be435fa646d66a65c986b4924f0849839f08692f39dde61",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ada1e030c0231db8d143b44ce92b4d1158eedb087880cad6d8cc7bd7ebe7b354",
+				"dweb:/ipfs/QmWZ2NHZweRpz1U9GF6R1h65ri76dnX7fNxLBeM2t5N5Ce"
+			]
+		},
+		"@openzeppelin/contracts/proxy/beacon/UpgradeableBeacon.sol": {
+			"keccak256": "0x6ec71aef5659f3f74011169948d2fcda8c6599be5bb38f986380a8737f96cc0f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://362f12aebd1022d643235e6a7fa6ccfb38c13f3a0d1b006d5d1aea51af4bb852",
+				"dweb:/ipfs/QmSUQ7pM4UnBawMfP2Di8EqawxaoU195DgsSLxHejvSpPz"
+			]
+		},
+		"@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol": {
+			"keccak256": "0x20ba3c551439998a53313a63959be77ab70f14338a39592c7a6eb36e8bc3d148",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2b4ad713900e1f3f43788b00742e0c1a885c254decf8fb8d854f4769401239cd",
+				"dweb:/ipfs/QmatiW29TqVMi4dgfHM2Uppn4LqsSeJZtnVvT2rrYqyjR2"
+			]
+		},
+		"@openzeppelin/contracts/utils/Address.sol": {
+			"keccak256": "0x2ccf9d2313a313d41a791505f2b5abfdc62191b5d4334f7f7a82691c088a1c87",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b3a57d0854b2fdce6ebff933a48dca2445643d1eccfc27f00292e937f26c6a58",
+				"dweb:/ipfs/QmW45rZooS9TqR4YXUbjRbtf2Bpb5ouSarBvfW1LdGprvV"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
+				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
+			]
+		},
+		"@openzeppelin/contracts/utils/StorageSlot.sol": {
+			"keccak256": "0xfe1b7a9aa2a530a9e705b220e26cd584e2fbdc9602a3a1066032b12816b46aca",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://dbaba7fe0fe556cc5ed291e03d271fd27d395250141ecfb57a4b30d528958ff9",
+				"dweb:/ipfs/QmWT653X2DyZo8nqEcmFe3yTkrCJv3ptbZLhbgLU3y6abe"
+			]
+		},
+		"src/bridge/IBridge.sol": {
+			"keccak256": "0xeba1e59fa4dd56d0d2cd775ab726d08e470bf3056f5473ce62b98499e55ff7bd",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://fca93cb8bf8369a86d299b263081d1789fd5f0b2579cd229f26e007b8f269d5f",
+				"dweb:/ipfs/QmVwEQLsy7sSGwJ7MEWeHPwSunKu1Hr5YozzNy6CW1prmH"
+			]
+		},
+		"src/bridge/IDelayedMessageProvider.sol": {
+			"keccak256": "0x1f216daf990c329310f44818e1c05d81c07fe875a5a07dd379d2c8fac921f208",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://d6ccdab97fb5c8b7d9a80b713dc6bd9bc0e71e9d41900ac5c7cf96cb2643aad6",
+				"dweb:/ipfs/QmeypCFXVXbTu3RehtFti4PMfuTCyzVKDwfGiZ2PeewRSG"
+			]
+		},
+		"src/bridge/IInboxBase.sol": {
+			"keccak256": "0x2d8800ecb63220a0174770080f714f5de9823ddd08888e23e79b80282a4940ea",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://5e4f3420abcddbac00e09cdfbb1b6af9de7fa73b5b27c53b71c06e9a35ae0ba3",
+				"dweb:/ipfs/QmTJimLXfWzUB8F8aPFAdeMsYVTFY1SywPPDEuFk397JNT"
+			]
+		},
+		"src/bridge/IOutbox.sol": {
+			"keccak256": "0x2de956f0a532a8db249be0eff614db7caa73eec2afb485c1ac9aed78ecf39e5f",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://d2ceb5dc3a34dc692f9a6c6eec9227ad7f2cfc423e8fd55460427e013819493b",
+				"dweb:/ipfs/Qmd3F4xSMP1aFCq2GcwEESVhqxWzGdH8y5ReK3V8UBNEZc"
+			]
+		},
+		"src/bridge/IOwnable.sol": {
+			"keccak256": "0x0ce0ccc2cd25968ab37aef146be9c9a615c3f2ad239fa759d1745190666729fd",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://6516e1a94fdc9530b90ceb408e3083ecc7e844afd4fc34a7ccab89a191c3b88f",
+				"dweb:/ipfs/QmZ4UwQe1pgTJxx1XqzcAKTgu9Wo6qZA5WSCPHygFJSdi8"
+			]
+		},
+		"src/bridge/ISequencerInbox.sol": {
+			"keccak256": "0x97341bd4cc27f3eae77980a722dfeb2b0b29492e920740a6138aa0812711c69a",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://78acecb4885ba0b5c1a91d5c79cc99c6ff16e0ebffd5dd1e9f99ac6e6d11344d",
+				"dweb:/ipfs/QmSDK7G79KKB1ETvG5Sd1ekWdeGi3RwnUCq9GtCbKonCd5"
+			]
+		},
+		"src/challenge/ChallengeLib.sol": {
+			"keccak256": "0x3fa0a02a544529e9f5e74821626c76fae258e915805b40057419605289251e54",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://567a715b8f1a539b7d75ca7c00bc804ea3eee1228dc71c38e96e551368178594",
+				"dweb:/ipfs/QmVgJc2sDXPzZyoC5BxL5WbaknZDWnesdja28QFo9Voamq"
+			]
+		},
+		"src/challenge/IChallengeManager.sol": {
+			"keccak256": "0x543429df962a4531c3fdec318cc6eb0f973a4a4b5300b6ca58636b78c8bbbb76",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://6c44b53f6c39197e823f63ac53b87a6659626bf03a55886fe2f0461221629d3f",
+				"dweb:/ipfs/QmPNCMeKnRD1BzQEjxTSgc5C7fNi9C3jwV18bs5hE2F4Xw"
+			]
+		},
+		"src/challenge/IChallengeResultReceiver.sol": {
+			"keccak256": "0xcdc17a7ec62792af2e0c1e2591d753314cd53791bd0cfe7e6e2c2a0ec7be0365",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://95fb426fc8a9e6ea7cafb9b5d45814fc0ac14b5a33589ba9682be3224f1837f3",
+				"dweb:/ipfs/QmaqAJi6iXsGNHLYmoU8DxF5YfFCLJy2nQKKARVpTEuPQs"
+			]
+		},
+		"src/libraries/AdminFallbackProxy.sol": {
+			"keccak256": "0x34880f2fe93c7e9d35e795bb372efd133d2be1753174d3a54caef232ca55ad7d",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://88456ea05b45f1fbebc2cbf9d661d7303bd7cff0d3fe9b83d1ea7c78fda5bdf4",
+				"dweb:/ipfs/QmemKJSjqKNBqd4iGUG8MHdkaPHEuXxGuRNhUN5j9mRJvu"
+			]
+		},
+		"src/libraries/ArbitrumChecker.sol": {
+			"keccak256": "0xadaa14d826fb4e1bc75c5e47e38c04a8c26c92d98a6a2f11753652894942752c",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://1c05a73bc28c23b56c8d7f1861d22823883e714a16ab1bb73569c08449735142",
+				"dweb:/ipfs/QmfKdTvLFpLdbuABc79ssYJg4KKB1e1DQEFm46TpRRec5g"
+			]
+		},
+		"src/libraries/Constants.sol": {
+			"keccak256": "0x8398f69eac6413a556c61b6278843e28b5876da9897a1b2833bfed4b0e53a310",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://0eb608b05e149f76f671f56fcb12709420096b5cd52cb960ccc298bd470f3b72",
+				"dweb:/ipfs/QmTQk1QXVBVy75zWupSd2wKqc5CXswrEJ7VEWMcrpZocou"
+			]
+		},
+		"src/libraries/DoubleLogicUUPSUpgradeable.sol": {
+			"keccak256": "0x04fbc2c6f60801d333f633975ef9e91c86366747b9519b63b0b7f989f8749e85",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://0f1309eb26a9c88e2dac6baf4d8372b96f92c34f988be0b9c44fc7dcfc681702",
+				"dweb:/ipfs/QmZSZnTBedXSfWRRzmcuB4p2yrNbR12nUnuiSg8TmhfVm6"
+			]
+		},
+		"src/libraries/IGasRefunder.sol": {
+			"keccak256": "0x35d07855184f8d31087ad0b67d1a8ccd0653a3a6c59c02513eb9c53b3371a385",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://20eec9a16fa9003971a1ac5f5f7a3b7c558c57cba01f98c50959b5c93786f639",
+				"dweb:/ipfs/QmaRQpgwZVQYe2EsFS4UrvrnFabJLQwUaBXm14C8V4rhBM"
+			]
+		},
+		"src/osp/IOneStepProofEntry.sol": {
+			"keccak256": "0x3c225c93bc0abf28feb5ff8eab586e0941b143117f3780da7afe2fce3a1c170f",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://0b9046433983cecd365353595978f2e5dade90151d73e090e606c9e2b7c0111a",
+				"dweb:/ipfs/Qma3Vbw9MdLhjzSziR2HTUp126sMkKJXKq5xnJ8rJiEmZD"
+			]
+		},
+		"src/osp/IOneStepProver.sol": {
+			"keccak256": "0x607c6d53dca1c16a9fd3335fb339747da7b2d83e098f3b7a393528faef471570",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://8d3c417462baaa7368c0d63b7b28a378f9b42eda9cc3b33ec9c041d53e4af50e",
+				"dweb:/ipfs/QmZbsPqnZTzcckh1sqZ8oWMd9gC3Nq9PJg7MkXpuQVK7uU"
+			]
+		},
+		"src/precompiles/ArbSys.sol": {
+			"keccak256": "0x4bc9f91d6a3973af46cc95dd5fe9a29d23e2e64b13512dd0b2d1bfcde705f132",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://7617f08af8fd8aa01a4a5e94ed0c4f15a8567665851c72765e82dbdd8ab20462",
+				"dweb:/ipfs/QmYuVxm3JtrPwWBXhtEJZkhuv2SQ1iBH4j6ypP6uRAWAgF"
+			]
+		},
+		"src/rollup/Config.sol": {
+			"keccak256": "0x0465186f3ee7680e52b6ef3229aa6e1550e9fda2a5ace22dae8666bda35fd059",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://17d43110d90966e5649a7fb04de8ddbe106918688d53acb30cbcda8e6d2c87a3",
+				"dweb:/ipfs/QmXc1zS3g9corpjfLzsU94mgJvurqZLVTuynP7m9F6WfkX"
+			]
+		},
+		"src/rollup/IRollupAdmin.sol": {
+			"keccak256": "0x0f1db6461fdbbeede43cbfaeeb5c9cd5c0c894b2ed7ae30c9f00031628cc15c0",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://4d45cd5fe41668c92341cd4819078a2b0e5642903e872f2521b83c159d387984",
+				"dweb:/ipfs/QmXJ2ipyUqsvijVrWhT74R1aRLDom43Uh1ZyfZXiwcbamN"
+			]
+		},
+		"src/rollup/IRollupCore.sol": {
+			"keccak256": "0x035e48c3115946518163037d2807c5ac62af4dd42bee1a45d6bd6065c09db3cb",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://60f12a6d18ebd892639628d2904b22f689a4cafe1155aecca719c560cc726d65",
+				"dweb:/ipfs/QmSwVYRqybMS1U2QCriio4qJxYQR93DdQVL3TUXvaYMAzP"
+			]
+		},
+		"src/rollup/IRollupEventInbox.sol": {
+			"keccak256": "0x38f13730a511605b82b13be5c46b27d5651749bdea299d10e94f98ab9a151092",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://d1e6cb55064c6b9fbb177affc1e3e0dd7eac0fd8aed7c76c9065fe1f9441c3c8",
+				"dweb:/ipfs/QmVvNv4Y5fCxMqD3LstYB5ZLNme1HgZP1a5uxshsrUHhKY"
+			]
+		},
+		"src/rollup/IRollupLogic.sol": {
+			"keccak256": "0x2e885e5732e18f6409c7ca82589059a2dafcfc7f047c741a693cdde8d66bc207",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://6f894c4b1d92de6daea471655b318a81ecbf251016b9ab4f8051a726dce993a9",
+				"dweb:/ipfs/QmX6tB4TSK3Lu2eL9q2rrLg39XbUhXS2Vi4C33ZmRWj43b"
+			]
+		},
+		"src/rollup/Node.sol": {
+			"keccak256": "0x52160c51fd30c4178298304bed5d73240e46c8059727bb5874b9779ebc2c3f46",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://25f879ed045b3b03e362b2be6b215ef9b1cf11304d6f8c770b0b46c6a225582a",
+				"dweb:/ipfs/QmNrYwj7isNq7x7yCb3pbYNoe4nQeE6NX29BzjibDgufub"
+			]
+		},
+		"src/rollup/RollupAdminLogic.sol": {
+			"keccak256": "0x51c64e194877f6bce77bf795ed545fc4b4961d367ea76ab427b29cf64aa4436e",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://c71e251baa90e9929d79ecedfdceff8674ad2fc7ce68914f2bcf8f360d58b6fa",
+				"dweb:/ipfs/QmTePx84FaGN7gcoNWkUQvVakQX1BXsq5ETVkW2K6wNetp"
+			]
+		},
+		"src/rollup/RollupCore.sol": {
+			"keccak256": "0xcd964c11b5d356b5f984a40e0c443dd3a9e17a1e4ddc10a6c0c143e3cd0af1f5",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://07b9429ca78d9baf3f59da66db5fb9f3e0655faccc285e41129bbd83448b9a26",
+				"dweb:/ipfs/QmYQsTnF87vhHcSnqcruUTW2wp1rTJre5WUef5gtozrC14"
+			]
+		},
+		"src/rollup/RollupLib.sol": {
+			"keccak256": "0x9cc656a776348b688de52f27c98f0ad21329839dd6dc7c3f251d36ac6cba3a0a",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://75713ffe6d91ae867df3d77d1b775a0e27bfd2d03b6307888cdbb9b140f9a2e9",
+				"dweb:/ipfs/QmdLcvD5exijWMHoJ2z4X92HbDWXE99Qni7s7q3bFaBk6e"
+			]
+		},
+		"src/state/GlobalState.sol": {
+			"keccak256": "0x5f83013cdbb96eae9bdd8c3675bcd099631a9dd17bb220fb60672e2342aa1784",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://afa5aab37957b2033f294f1688c7cea264fe24d4c7943541b3023a6bce547113",
+				"dweb:/ipfs/QmV5hbLEa1RqHLvSSGjg34ri3bTM3nCsuBt3Tyh2XeGkaL"
+			]
+		},
+		"src/state/Instructions.sol": {
+			"keccak256": "0x7cee977a63f307f340000f4f85a91499a93a272ac5fee71cc2f2e14e1ec07979",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://996c1eae50e35182ab00c7baa125924c6f675d9a980b8daa7d3730a45b7ae7d1",
+				"dweb:/ipfs/QmZQPoAFukZVraU7kwYXwZwCWeWcuvzTQsAArZKhr2VFRL"
+			]
+		},
+		"src/state/Machine.sol": {
+			"keccak256": "0xb090986476aa7a27f71f82a50a1e78d0bee54b73bdda8b454134950d1032e1e5",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://d94dbe67c9d5b13273ef53c016d9fff4bb5e99603cc473cf710f18fa3b314816",
+				"dweb:/ipfs/Qmf2yg5X7YB9GgmKxUdNnoVhStryXcXqvZByDfa9xfcuDv"
+			]
+		},
+		"src/state/Module.sol": {
+			"keccak256": "0xaea2b8895fd8de33ae658d7b0ef9cf92332ab303db2fdd3fa8f2978bf8e27abf",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://347865e3bfcfce00149c5e6ade229fc839b441e36f44887873cb4f3dd52f28d5",
+				"dweb:/ipfs/QmSqsnUfNBoL8bcBh534yPWEVHD8WUYfSc2pYkybH1C6KD"
+			]
+		},
+		"src/state/ModuleMemoryCompact.sol": {
+			"keccak256": "0x2906b87bf8b2a61e79900e6f3562e2563551f0b62dc6eff733201a4cef7fc400",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://997b5036e6c1d0973f0b0df8db7bc705a4ee598973205e580797f8dcc3ac65df",
+				"dweb:/ipfs/QmWhT9jreDhp6kRiug9jpZ4r6Dc8YGMbdw4qeuU6AawUf9"
+			]
+		},
+		"src/state/MultiStack.sol": {
+			"keccak256": "0xde9269d4e51409b723d377832f629f2c73c9ab61843cf99528f95381eb2b1c6c",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://d8e3564cd62e18e576d8877987dcabe02f94a615d029a27179e66ba1524f85ef",
+				"dweb:/ipfs/QmdBTC8wQoc1JvDuSccDYYHLPL4C6b3iJv7QFi5yTnJCbJ"
+			]
+		},
+		"src/state/StackFrame.sol": {
+			"keccak256": "0x0b5ec842a12d04300c4d9adf28c5feafbc5edbcfc1c07f3d3a4da2bab7aaed71",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://37d31494209d5295e3a620acde6c45c7531873dbee86bfe55d3e51def5842747",
+				"dweb:/ipfs/QmQ2qFK3y6FXFiC36BLyTXn6FRfqcGdkHv53taXXuj6aNL"
+			]
+		},
+		"src/state/Value.sol": {
+			"keccak256": "0x051670cb29e9f06a66244aed5d50187c443b6ff63fd3017b3ce584157664a32e",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://7e86bcd72e976f7f14b927fcfa89370af7d7a28fdb607581ad2e62ccadb28b31",
+				"dweb:/ipfs/QmSRd7r8HmhGQ285Wz2UV5ooBhHrCvFhU9NxcyNX2R9Krv"
+			]
+		},
+		"src/state/ValueArray.sol": {
+			"keccak256": "0x18a7173cca74bfc1c28217d2ef239988373a8d5232657a665c45361776a95afe",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://15f6cd00e9e06b9e82183fffd45ef53574ce9509d2ec3b78492237dcbe3ae315",
+				"dweb:/ipfs/QmahRacGQVfdxJz1NNaCfMWywfBD5aGTY3da41NTjWTxz7"
+			]
+		},
+		"src/state/ValueStack.sol": {
+			"keccak256": "0x33a8a4f9a51d30619bdfe61d72c48991ea91e7201e3b00b14b680f3609aa30f7",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://95f41cab1e5bf457d40feb8e94017feaadf186760f018aa60ccd2a08c3919c26",
+				"dweb:/ipfs/QmVbmyCUgvh4rSRVzMbfAq9w8azFbZqntRdJmQhLGfx8GM"
+			]
+		}
+	},
+	"version": 1
+}

@@ -4,51 +4,46 @@
 
 pragma solidity >=0.4.21 <0.9.0;
 
-/// @title Provides owners with tools for managing the rollup.
+/// @title Provides owners with tools for managing the gasless configuration.
 /// @notice Calls by non-owners will always revert.
-/// Most of Arbitrum Classic's owner methods have been removed since they no longer make sense in Nitro:
-/// - What were once chain parameters are now parts of ArbOS's state, and those that remain are set at genesis.
-/// - ArbOS upgrades happen with the rest of the system rather than being independent
-/// - Exemptions to address aliasing are no longer offered. Exemptions were intended to support backward compatibility for contracts deployed before aliasing was introduced, but no exemptions were ever requested.
-/// Precompiled contract that exists in every Arbitrum chain at 0x00000000000000000000000000000000000007E8.
+/// Precompiled contract that exists in Deriw chain at 0x00000000000000000000000000000000000007E8.
 interface DeriwGasless {
-    
-    /// @notice Add account as a chain owner
+    /// @notice Add account as a gasless owner
     function addGaslessOwner(address newOwner) external;
 
-    /// @notice Remove account from the list of chain owners
+    /// @notice Remove account from the list of gasless owners
     function removeGaslessOwner(address ownerToRemove) external;
 
-    /// @notice See if the user is a chain owner
+    /// @notice See if the user is a gasless owner
     function isGaslessOwner(address addr) external view returns (bool);
 
-    /// @notice Retrieves the list of chain owners
+    /// @notice Retrieves the list of gasless owners
     function getAllGaslessOwners() external view returns (address[] memory);
 
     // Emitted when a successful call is made to this precompile
     event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
 
-    /// @notice Retrieves the list of tx.from in pricer
+    /// @notice Retrieves the allowed list of gasless transaction (sender, tx.from)
     function getPricerTxFromAddrs() external view returns (address[] memory);
 
-    /// @notice Retrieves the list of tx.to in pricer
+    /// @notice Retrieves the allowed list of gasless transaction (interacted smart contract, tx.to)
     function getPricerTxToAddrs() external view returns (address[] memory);
 
-    /// @notice Add a tx.from to the pricer
+    /// @notice Add a address that can send (tx.to) gasless transaction
     function addPricerTxFrom(address addr) external;
 
-    /// @notice Add a tx.to to the pricer
+    /// @notice Add a address tx.to is gasless transaction
     function addPricerTxTo(address addr) external;
 
-    /// @notice See if the tx.from is in the pricer
+    /// @notice See if the tx.from address is in the gasless transaction
     function isPricerTxFrom(address addr) external view returns (bool);
 
-    /// @notice See if the tx.to is in the pricer
+    /// @notice See if the tx.to is in the gasless transaction
     function isPricerTxTo(address addr) external view returns (bool);
 
-    /// @notice Remove tx.from from the pricer
+    /// @notice Remove tx.from address from the gasless sender
     function removePricerTxFrom(address addr) external;
 
-    // @notice Remove tx.to from the pricer
+    // @notice Remove tx.to address from the gasless contract
     function removePricerTxTo(address addr) external;
 }

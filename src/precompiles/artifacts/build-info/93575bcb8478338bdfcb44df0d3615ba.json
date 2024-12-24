@@ -1,0 +1,487 @@
+{
+	"id": "93575bcb8478338bdfcb44df0d3615ba",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.26",
+	"solcLongVersion": "0.8.26+commit.8a97fa7a",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"src/precompiles/DeriwSubAccountPublic.sol": {
+				"content": "// Copyright 2021-2022, Offchain Labs, Inc.\n// For license information, see https://github.com/OffchainLabs/nitro-contracts/blob/main/LICENSE\n// SPDX-License-Identifier: BUSL-1.1\n\npragma solidity >=0.4.21 <0.9.0;\n\n/// @title Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave.\n/// @notice Precompiled contract that exists in every Arbitrum chain at 0x00000000000000000000000000000000000007E9.\ninterface DeriwSubAccountPublic {\n    /**\n     * @notice bind relationship between parent-sub account\n     * Sub-account submitted the signature of the parent, verify content and update the relationship\n     * replace existing relationship if existed\n     */\n    function grantAccountControl(bytes calldata signData, bytes calldata signature) external;\n\n    /**\n     * @notice revoke relationship between parent and sub-account\n     * Sub-account submitted the signature of the parent, verify content and update the relationship\n     */\n    function revokeAccountControl(bytes calldata signData, bytes calldata signature) external;\n\n    /**\n     * @notice Check which parent account is control by child address\n     */\n    function readAccountControl(address childAddress) external view returns (address);\n\n    /**\n     * @notice Check either sub-account session is still valid\n     */\n//    function isValidAccountSession(address addr)\n//        external\n//        view\n//    returns (\n//            bool,\n//            uint256,\n//            int256    \n//        );\n}\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"src/precompiles/DeriwSubAccountPublic.sol": {
+				"DeriwSubAccountPublic": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"internalType": "bytes",
+									"name": "signData",
+									"type": "bytes"
+								},
+								{
+									"internalType": "bytes",
+									"name": "signature",
+									"type": "bytes"
+								}
+							],
+							"name": "grantAccountControl",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "childAddress",
+									"type": "address"
+								}
+							],
+							"name": "readAccountControl",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "bytes",
+									"name": "signData",
+									"type": "bytes"
+								},
+								{
+									"internalType": "bytes",
+									"name": "signature",
+									"type": "bytes"
+								}
+							],
+							"name": "revokeAccountControl",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {},
+						"title": "Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave.",
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"grantAccountControl(bytes,bytes)": "9510071b",
+							"readAccountControl(address)": "d251cba6",
+							"revokeAccountControl(bytes,bytes)": "0a40738b"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.26+commit.8a97fa7a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"signData\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"grantAccountControl\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"childAddress\",\"type\":\"address\"}],\"name\":\"readAccountControl\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"signData\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"revokeAccountControl\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"title\":\"Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave.\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"grantAccountControl(bytes,bytes)\":{\"notice\":\"bind relationship between parent-sub account Sub-account submitted the signature of the parent, verify content and update the relationship replace existing relationship if existed\"},\"readAccountControl(address)\":{\"notice\":\"Check which parent account is control by child address\"},\"revokeAccountControl(bytes,bytes)\":{\"notice\":\"revoke relationship between parent and sub-account Sub-account submitted the signature of the parent, verify content and update the relationship\"}},\"notice\":\"Precompiled contract that exists in every Arbitrum chain at 0x00000000000000000000000000000000000007E9.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/precompiles/DeriwSubAccountPublic.sol\":\"DeriwSubAccountPublic\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"src/precompiles/DeriwSubAccountPublic.sol\":{\"keccak256\":\"0x842c351259069b98338b0742c87ec8f49b3bdecf286938b1400363550227f2f7\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://3217f164e5108a98197f4bbf5b13847281665b7707e1afbbddb8c224c4f123fb\",\"dweb:/ipfs/QmbERqVqRgCg7ugjoDnqQ3tKGd79bMjCcyvzW2Xc35cYtv\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {
+							"grantAccountControl(bytes,bytes)": {
+								"notice": "bind relationship between parent-sub account Sub-account submitted the signature of the parent, verify content and update the relationship replace existing relationship if existed"
+							},
+							"readAccountControl(address)": {
+								"notice": "Check which parent account is control by child address"
+							},
+							"revokeAccountControl(bytes,bytes)": {
+								"notice": "revoke relationship between parent and sub-account Sub-account submitted the signature of the parent, verify content and update the relationship"
+							}
+						},
+						"notice": "Precompiled contract that exists in every Arbitrum chain at 0x00000000000000000000000000000000000007E9.",
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"src/precompiles/DeriwSubAccountPublic.sol": {
+				"ast": {
+					"absolutePath": "src/precompiles/DeriwSubAccountPublic.sol",
+					"exportedSymbols": {
+						"DeriwSubAccountPublic": [
+							27
+						]
+					},
+					"id": 28,
+					"license": "BUSL-1.1",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								">=",
+								"0.4",
+								".21",
+								"<",
+								"0.9",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "180:32:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "DeriwSubAccountPublic",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"documentation": {
+								"id": 2,
+								"nodeType": "StructuredDocumentation",
+								"src": "214:239:0",
+								"text": "@title Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave.\n @notice Precompiled contract that exists in every Arbitrum chain at 0x00000000000000000000000000000000000007E9."
+							},
+							"fullyImplemented": false,
+							"id": 27,
+							"linearizedBaseContracts": [
+								27
+							],
+							"name": "DeriwSubAccountPublic",
+							"nameLocation": "463:21:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"documentation": {
+										"id": 3,
+										"nodeType": "StructuredDocumentation",
+										"src": "491:220:0",
+										"text": " @notice bind relationship between parent-sub account\n Sub-account submitted the signature of the parent, verify content and update the relationship\n replace existing relationship if existed"
+									},
+									"functionSelector": "9510071b",
+									"id": 10,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "grantAccountControl",
+									"nameLocation": "725:19:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 8,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 5,
+												"mutability": "mutable",
+												"name": "signData",
+												"nameLocation": "760:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "745:23:0",
+												"stateVariable": false,
+												"storageLocation": "calldata",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes_calldata_ptr",
+													"typeString": "bytes"
+												},
+												"typeName": {
+													"id": 4,
+													"name": "bytes",
+													"nodeType": "ElementaryTypeName",
+													"src": "745:5:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes_storage_ptr",
+														"typeString": "bytes"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 7,
+												"mutability": "mutable",
+												"name": "signature",
+												"nameLocation": "785:9:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "770:24:0",
+												"stateVariable": false,
+												"storageLocation": "calldata",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes_calldata_ptr",
+													"typeString": "bytes"
+												},
+												"typeName": {
+													"id": 6,
+													"name": "bytes",
+													"nodeType": "ElementaryTypeName",
+													"src": "770:5:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes_storage_ptr",
+														"typeString": "bytes"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "744:51:0"
+									},
+									"returnParameters": {
+										"id": 9,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "804:0:0"
+									},
+									"scope": 27,
+									"src": "716:89:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 11,
+										"nodeType": "StructuredDocumentation",
+										"src": "811:178:0",
+										"text": " @notice revoke relationship between parent and sub-account\n Sub-account submitted the signature of the parent, verify content and update the relationship"
+									},
+									"functionSelector": "0a40738b",
+									"id": 18,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "revokeAccountControl",
+									"nameLocation": "1003:20:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 16,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 13,
+												"mutability": "mutable",
+												"name": "signData",
+												"nameLocation": "1039:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 18,
+												"src": "1024:23:0",
+												"stateVariable": false,
+												"storageLocation": "calldata",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes_calldata_ptr",
+													"typeString": "bytes"
+												},
+												"typeName": {
+													"id": 12,
+													"name": "bytes",
+													"nodeType": "ElementaryTypeName",
+													"src": "1024:5:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes_storage_ptr",
+														"typeString": "bytes"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 15,
+												"mutability": "mutable",
+												"name": "signature",
+												"nameLocation": "1064:9:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 18,
+												"src": "1049:24:0",
+												"stateVariable": false,
+												"storageLocation": "calldata",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes_calldata_ptr",
+													"typeString": "bytes"
+												},
+												"typeName": {
+													"id": 14,
+													"name": "bytes",
+													"nodeType": "ElementaryTypeName",
+													"src": "1049:5:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes_storage_ptr",
+														"typeString": "bytes"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1023:51:0"
+									},
+									"returnParameters": {
+										"id": 17,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1083:0:0"
+									},
+									"scope": 27,
+									"src": "994:90:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 19,
+										"nodeType": "StructuredDocumentation",
+										"src": "1090:81:0",
+										"text": " @notice Check which parent account is control by child address"
+									},
+									"functionSelector": "d251cba6",
+									"id": 26,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "readAccountControl",
+									"nameLocation": "1185:18:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 22,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 21,
+												"mutability": "mutable",
+												"name": "childAddress",
+												"nameLocation": "1212:12:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 26,
+												"src": "1204:20:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 20,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1204:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1203:22:0"
+									},
+									"returnParameters": {
+										"id": 25,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 24,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 26,
+												"src": "1249:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 23,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1249:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1248:9:0"
+									},
+									"scope": 27,
+									"src": "1176:82:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 28,
+							"src": "453:1069:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "180:1343:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

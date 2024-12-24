@@ -12,8 +12,10 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const TEST_PK =
-  '0xe9dca69cafab0e953d9ee596f51cbcb8cf20b4ae017d5a7547330aa3eb1886e1'
+const TEST_PK = '03c9b93a2534f0b459aeb81726cc8bd6160a16ab869f22f304457cff00318c68' // 0x57f93d0dfa75206f61f2bcd41cb61c499d48fe17
+const PARENT_PK = '3f924b934c41a048183b48835acdb533b1d07045a38394b006b238a3fc07ea89' // 0x94a6713cbf5f589ab51570d0b4cd219792421af2
+const CHILD_PK = '9c8b3de45967a4bc12930ae85f624b672797a01aa17554b310441cae36764564' // 0x8f48163d1932dc2286cc7d1f260e09c6ed07a1e0
+const SUBACCOUNTOWNER = '90486089f0c0019fbf29ab904e332850c1dc7d723330005f7e8abaced4ba979e' // 0x1ae74be701339fb985f6837bc54d62630c4933bb
 
 const solidity = {
   compilers: [
@@ -166,9 +168,14 @@ module.exports = {
       url: 'http://localhost:8545',
     },
     local: {
-      chainId: 51224401792,
+      chainId: 42691720113,
       url: 'http://127.0.0.1:8449',
-      accounts: [TEST_PK],
+      accounts: [TEST_PK, PARENT_PK, CHILD_PK, SUBACCOUNTOWNER],
+    },
+    devnet: {
+      chainId: 2884,
+      url: 'https://rpc.dev.deriw.com',
+      accounts: [TEST_PK, PARENT_PK, CHILD_PK, SUBACCOUNTOWNER],
     },
   },
   etherscan: {

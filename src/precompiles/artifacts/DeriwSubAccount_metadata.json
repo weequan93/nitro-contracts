@@ -1,0 +1,242 @@
+{
+	"compiler": {
+		"version": "0.8.16+commit.07a7930e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes4",
+						"name": "method",
+						"type": "bytes4"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "OwnerActs",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newAddress",
+						"type": "address"
+					}
+				],
+				"name": "addAllowedAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "addSubAccountOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllAllowedAddress",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllSubAccountOwner",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getUsdtAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isAllowedAddress",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isSubAccountOwner",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addressToRemove",
+						"type": "address"
+					}
+				],
+				"name": "removeAllowedAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "ownerToRemove",
+						"type": "address"
+					}
+				],
+				"name": "removeSubAccountOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newAddress",
+						"type": "address"
+					}
+				],
+				"name": "setUsdtAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"title": "Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave. Precompiled contract that exists in Deriw chain at 0x00000000000000000000000000000000000007EA.",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"addAllowedAddress(address)": {
+					"notice": "Add smart contract address that allow sub-account to interact with"
+				},
+				"getAllAllowedAddress()": {
+					"notice": "Retrieves the list smart contract address, that allow sub-account to interact with"
+				},
+				"getAllSubAccountOwner()": {
+					"notice": "Retrieves the list of sub-account owner"
+				},
+				"getUsdtAddress()": {
+					"notice": "Retrieve usdt address"
+				},
+				"isAllowedAddress(address)": {
+					"notice": "Check is the address allowed for sub-account interaction"
+				},
+				"isSubAccountOwner(address)": {
+					"notice": "See if the user is a sub-account owner"
+				},
+				"removeAllowedAddress(address)": {
+					"notice": "Remove smart contract address that allow sub-account to interact with"
+				},
+				"removeSubAccountOwner(address)": {
+					"notice": "Remove sub-account owner"
+				},
+				"setUsdtAddress(address)": {
+					"notice": "Set usdt address, so that only approve method are allow for sub-account interact with"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/precompiles/DeriwSubAccount.sol": "DeriwSubAccount"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/precompiles/DeriwSubAccount.sol": {
+			"keccak256": "0x7e35074fa10d0b146094370358a685bd4a6f53faf1dc015e6298ba03fc67ce90",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://3ef2b8b319aa9c967f7e0a4bd63c72c93babae776c332e4f3b79da345edc0c86",
+				"dweb:/ipfs/QmcRHgF8YAHa9LgwGu6wNo7VjKc4T9G67KFDGuprtmekwc"
+			]
+		}
+	},
+	"version": 1
+}

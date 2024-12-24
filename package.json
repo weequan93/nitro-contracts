@@ -47,14 +47,15 @@
     "deploy-eth-rollup": "hardhat run scripts/createEthRollup.ts",
     "deploy-erc20-rollup": "hardhat run scripts/createERC20Rollup.ts",
     "create-rollup-testnode": "hardhat run scripts/local-deployment/deployCreatorAndCreateRollup.ts",
-    "deploy-cachemanager-testnode": "hardhat run scripts/local-deployment/deployCacheManager.ts"
+    "deploy-cachemanager-testnode": "hardhat run scripts/local-deployment/deployCacheManager.ts",
+    "generate-signature": "ts-node scripts/util/signature.ts"
   },
   "dependencies": {
     "@offchainlabs/upgrade-executor": "1.1.0-beta.0",
     "@openzeppelin/contracts": "4.5.0",
     "@openzeppelin/contracts-upgradeable": "4.5.2",
     "patch-package": "^6.4.7",
-    "solady": "0.0.182"
+    "solady": "0.0.182",
     "viem": "^1.18.0"
   },
   "private": false,

@@ -1,0 +1,113 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "signData",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "grantAccountControl",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "childAddress",
+						"type": "address"
+					}
+				],
+				"name": "readAccountControl",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "signData",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "revokeAccountControl",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"title": "Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave.",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"grantAccountControl(bytes,bytes)": {
+					"notice": "bind relationship between parent-sub account Sub-account submitted the signature of the parent, verify content and update the relationship replace existing relationship if existed"
+				},
+				"readAccountControl(address)": {
+					"notice": "Check which parent account is control by child address"
+				},
+				"revokeAccountControl(bytes,bytes)": {
+					"notice": "revoke relationship between parent and sub-account Sub-account submitted the signature of the parent, verify content and update the relationship"
+				}
+			},
+			"notice": "Precompiled contract that exists in every Arbitrum chain at 0x00000000000000000000000000000000000007E9.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/precompiles/DeriwSubAccountPublic.sol": "DeriwSubAccountPublic"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/precompiles/DeriwSubAccountPublic.sol": {
+			"keccak256": "0x842c351259069b98338b0742c87ec8f49b3bdecf286938b1400363550227f2f7",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://3217f164e5108a98197f4bbf5b13847281665b7707e1afbbddb8c224c4f123fb",
+				"dweb:/ipfs/QmbERqVqRgCg7ugjoDnqQ3tKGd79bMjCcyvzW2Xc35cYtv"
+			]
+		}
+	},
+	"version": 1
+}

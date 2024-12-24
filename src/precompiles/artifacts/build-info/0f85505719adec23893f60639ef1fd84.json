@@ -1,0 +1,808 @@
+{
+	"id": "0f85505719adec23893f60639ef1fd84",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.0",
+	"solcLongVersion": "0.8.0+commit.c7dfd78e",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"src/precompiles/ArbWasmCache.sol": {
+				"content": "// Copyright 2022-2024, Offchain Labs, Inc.\n// For license information, see https://github.com/OffchainLabs/nitro/blob/master/LICENSE\n// SPDX-License-Identifier: BUSL-1.1\n\npragma solidity >=0.4.21 <0.9.0;\n\n/**\n * @title Methods for managing Stylus caches\n * @notice Precompiled contract that exists in every Arbitrum chain at 0x0000000000000000000000000000000000000072.\n */\ninterface ArbWasmCache {\n    /// @notice See if the user is a cache manager.\n    function isCacheManager(address manager) external view returns (bool);\n\n    /// @notice Retrieve all address managers.\n    /// @return managers the list of managers.\n    function allCacheManagers() external view returns (address[] memory managers);\n\n    /// @dev Deprecated, replaced with cacheProgram\n    function cacheCodehash(bytes32 codehash) external;\n\n    /// @notice Caches all programs with a codehash equal to the given address.\n    /// @notice Reverts if the programs have expired.\n    /// @notice Caller must be a cache manager or chain owner.\n    /// @notice If you're looking for how to bid for position, interact with the chain's cache manager contract.\n    function cacheProgram(address addr) external;\n\n    /// @notice Evicts all programs with the given codehash.\n    /// @notice Caller must be a cache manager or chain owner.\n    function evictCodehash(bytes32 codehash) external;\n\n    /// @notice Gets whether a program is cached. Note that the program may be expired.\n    function codehashIsCached(bytes32 codehash) external view returns (bool);\n\n    event UpdateProgramCache(address indexed manager, bytes32 indexed codehash, bool cached);\n}\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"src/precompiles/ArbWasmCache.sol": {
+				"ArbWasmCache": {
+					"abi": [
+						{
+							"anonymous": false,
+							"inputs": [
+								{
+									"indexed": true,
+									"internalType": "address",
+									"name": "manager",
+									"type": "address"
+								},
+								{
+									"indexed": true,
+									"internalType": "bytes32",
+									"name": "codehash",
+									"type": "bytes32"
+								},
+								{
+									"indexed": false,
+									"internalType": "bool",
+									"name": "cached",
+									"type": "bool"
+								}
+							],
+							"name": "UpdateProgramCache",
+							"type": "event"
+						},
+						{
+							"inputs": [],
+							"name": "allCacheManagers",
+							"outputs": [
+								{
+									"internalType": "address[]",
+									"name": "managers",
+									"type": "address[]"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "bytes32",
+									"name": "codehash",
+									"type": "bytes32"
+								}
+							],
+							"name": "cacheCodehash",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "addr",
+									"type": "address"
+								}
+							],
+							"name": "cacheProgram",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "bytes32",
+									"name": "codehash",
+									"type": "bytes32"
+								}
+							],
+							"name": "codehashIsCached",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "bytes32",
+									"name": "codehash",
+									"type": "bytes32"
+								}
+							],
+							"name": "evictCodehash",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "manager",
+									"type": "address"
+								}
+							],
+							"name": "isCacheManager",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {
+							"allCacheManagers()": {
+								"returns": {
+									"managers": "the list of managers."
+								}
+							},
+							"cacheCodehash(bytes32)": {
+								"details": "Deprecated, replaced with cacheProgram"
+							}
+						},
+						"title": "Methods for managing Stylus caches",
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"allCacheManagers()": "0ec1d773",
+							"cacheCodehash(bytes32)": "4ceac817",
+							"cacheProgram(address)": "e73ac9f2",
+							"codehashIsCached(bytes32)": "a72f179b",
+							"evictCodehash(bytes32)": "ce972013",
+							"isCacheManager(address)": "85e2de85"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"manager\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"codehash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"cached\",\"type\":\"bool\"}],\"name\":\"UpdateProgramCache\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"allCacheManagers\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"managers\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"codehash\",\"type\":\"bytes32\"}],\"name\":\"cacheCodehash\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"cacheProgram\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"codehash\",\"type\":\"bytes32\"}],\"name\":\"codehashIsCached\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"codehash\",\"type\":\"bytes32\"}],\"name\":\"evictCodehash\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"manager\",\"type\":\"address\"}],\"name\":\"isCacheManager\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"allCacheManagers()\":{\"returns\":{\"managers\":\"the list of managers.\"}},\"cacheCodehash(bytes32)\":{\"details\":\"Deprecated, replaced with cacheProgram\"}},\"title\":\"Methods for managing Stylus caches\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"allCacheManagers()\":{\"notice\":\"Retrieve all address managers.\"},\"cacheProgram(address)\":{\"notice\":\"Caches all programs with a codehash equal to the given address.Reverts if the programs have expired.Caller must be a cache manager or chain owner.If you're looking for how to bid for position, interact with the chain's cache manager contract.\"},\"codehashIsCached(bytes32)\":{\"notice\":\"Gets whether a program is cached. Note that the program may be expired.\"},\"evictCodehash(bytes32)\":{\"notice\":\"Evicts all programs with the given codehash.Caller must be a cache manager or chain owner.\"},\"isCacheManager(address)\":{\"notice\":\"See if the user is a cache manager.\"}},\"notice\":\"Precompiled contract that exists in every Arbitrum chain at 0x0000000000000000000000000000000000000072.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/precompiles/ArbWasmCache.sol\":\"ArbWasmCache\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"src/precompiles/ArbWasmCache.sol\":{\"keccak256\":\"0x27a520760255cc19988cdf5ec61f7b17814d1f46febf19d611bad824f313fb50\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://dcb9e6ec79b1213bc3cb8ac0d0362eef4548ef791775b90a426a225d245b5595\",\"dweb:/ipfs/QmeDFSq16frygf5UGK1dRDuiYyZa8nn9tf3MZ5HgYmiCt7\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {
+							"allCacheManagers()": {
+								"notice": "Retrieve all address managers."
+							},
+							"cacheProgram(address)": {
+								"notice": "Caches all programs with a codehash equal to the given address.Reverts if the programs have expired.Caller must be a cache manager or chain owner.If you're looking for how to bid for position, interact with the chain's cache manager contract."
+							},
+							"codehashIsCached(bytes32)": {
+								"notice": "Gets whether a program is cached. Note that the program may be expired."
+							},
+							"evictCodehash(bytes32)": {
+								"notice": "Evicts all programs with the given codehash.Caller must be a cache manager or chain owner."
+							},
+							"isCacheManager(address)": {
+								"notice": "See if the user is a cache manager."
+							}
+						},
+						"notice": "Precompiled contract that exists in every Arbitrum chain at 0x0000000000000000000000000000000000000072.",
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"src/precompiles/ArbWasmCache.sol": {
+				"ast": {
+					"absolutePath": "src/precompiles/ArbWasmCache.sol",
+					"exportedSymbols": {
+						"ArbWasmCache": [
+							52
+						]
+					},
+					"id": 53,
+					"license": "BUSL-1.1",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								">=",
+								"0.4",
+								".21",
+								"<",
+								"0.9",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "172:32:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"documentation": {
+								"id": 2,
+								"nodeType": "StructuredDocumentation",
+								"src": "206:167:0",
+								"text": " @title Methods for managing Stylus caches\n @notice Precompiled contract that exists in every Arbitrum chain at 0x0000000000000000000000000000000000000072."
+							},
+							"fullyImplemented": false,
+							"id": 52,
+							"linearizedBaseContracts": [
+								52
+							],
+							"name": "ArbWasmCache",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"documentation": {
+										"id": 3,
+										"nodeType": "StructuredDocumentation",
+										"src": "403:47:0",
+										"text": "@notice See if the user is a cache manager."
+									},
+									"functionSelector": "85e2de85",
+									"id": 10,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "isCacheManager",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 6,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 5,
+												"mutability": "mutable",
+												"name": "manager",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "479:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 4,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "479:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "478:17:0"
+									},
+									"returnParameters": {
+										"id": 9,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 8,
+												"mutability": "mutable",
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "519:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 7,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "519:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "518:6:0"
+									},
+									"scope": 52,
+									"src": "455:70:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 11,
+										"nodeType": "StructuredDocumentation",
+										"src": "531:89:0",
+										"text": "@notice Retrieve all address managers.\n @return managers the list of managers."
+									},
+									"functionSelector": "0ec1d773",
+									"id": 17,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "allCacheManagers",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 12,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "650:2:0"
+									},
+									"returnParameters": {
+										"id": 16,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 15,
+												"mutability": "mutable",
+												"name": "managers",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "676:25:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+													"typeString": "address[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 13,
+														"name": "address",
+														"nodeType": "ElementaryTypeName",
+														"src": "676:7:0",
+														"stateMutability": "nonpayable",
+														"typeDescriptions": {
+															"typeIdentifier": "t_address",
+															"typeString": "address"
+														}
+													},
+													"id": 14,
+													"nodeType": "ArrayTypeName",
+													"src": "676:9:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+														"typeString": "address[]"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "675:27:0"
+									},
+									"scope": 52,
+									"src": "625:78:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 18,
+										"nodeType": "StructuredDocumentation",
+										"src": "709:47:0",
+										"text": "@dev Deprecated, replaced with cacheProgram"
+									},
+									"functionSelector": "4ceac817",
+									"id": 23,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "cacheCodehash",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 21,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 20,
+												"mutability": "mutable",
+												"name": "codehash",
+												"nodeType": "VariableDeclaration",
+												"scope": 23,
+												"src": "784:16:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 19,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "784:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "783:18:0"
+									},
+									"returnParameters": {
+										"id": 22,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "810:0:0"
+									},
+									"scope": 52,
+									"src": "761:50:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 24,
+										"nodeType": "StructuredDocumentation",
+										"src": "817:305:0",
+										"text": "@notice Caches all programs with a codehash equal to the given address.\n @notice Reverts if the programs have expired.\n @notice Caller must be a cache manager or chain owner.\n @notice If you're looking for how to bid for position, interact with the chain's cache manager contract."
+									},
+									"functionSelector": "e73ac9f2",
+									"id": 29,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "cacheProgram",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 27,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 26,
+												"mutability": "mutable",
+												"name": "addr",
+												"nodeType": "VariableDeclaration",
+												"scope": 29,
+												"src": "1149:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 25,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1149:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1148:14:0"
+									},
+									"returnParameters": {
+										"id": 28,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1171:0:0"
+									},
+									"scope": 52,
+									"src": "1127:45:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 30,
+										"nodeType": "StructuredDocumentation",
+										"src": "1178:119:0",
+										"text": "@notice Evicts all programs with the given codehash.\n @notice Caller must be a cache manager or chain owner."
+									},
+									"functionSelector": "ce972013",
+									"id": 35,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "evictCodehash",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 33,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 32,
+												"mutability": "mutable",
+												"name": "codehash",
+												"nodeType": "VariableDeclaration",
+												"scope": 35,
+												"src": "1325:16:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 31,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "1325:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1324:18:0"
+									},
+									"returnParameters": {
+										"id": 34,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1351:0:0"
+									},
+									"scope": 52,
+									"src": "1302:50:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 36,
+										"nodeType": "StructuredDocumentation",
+										"src": "1358:83:0",
+										"text": "@notice Gets whether a program is cached. Note that the program may be expired."
+									},
+									"functionSelector": "a72f179b",
+									"id": 43,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "codehashIsCached",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 39,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 38,
+												"mutability": "mutable",
+												"name": "codehash",
+												"nodeType": "VariableDeclaration",
+												"scope": 43,
+												"src": "1472:16:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 37,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "1472:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1471:18:0"
+									},
+									"returnParameters": {
+										"id": 42,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 41,
+												"mutability": "mutable",
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 43,
+												"src": "1513:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 40,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "1513:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1512:6:0"
+									},
+									"scope": 52,
+									"src": "1446:73:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"anonymous": false,
+									"id": 51,
+									"name": "UpdateProgramCache",
+									"nodeType": "EventDefinition",
+									"parameters": {
+										"id": 50,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 45,
+												"indexed": true,
+												"mutability": "mutable",
+												"name": "manager",
+												"nodeType": "VariableDeclaration",
+												"scope": 51,
+												"src": "1550:23:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 44,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1550:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 47,
+												"indexed": true,
+												"mutability": "mutable",
+												"name": "codehash",
+												"nodeType": "VariableDeclaration",
+												"scope": 51,
+												"src": "1575:24:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 46,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "1575:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 49,
+												"indexed": false,
+												"mutability": "mutable",
+												"name": "cached",
+												"nodeType": "VariableDeclaration",
+												"scope": 51,
+												"src": "1601:11:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 48,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "1601:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1549:64:0"
+									},
+									"src": "1525:89:0"
+								}
+							],
+							"scope": 53,
+							"src": "374:1242:0"
+						}
+					],
+					"src": "172:1445:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
