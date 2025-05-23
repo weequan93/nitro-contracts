@@ -43,6 +43,13 @@ interface DeriwSubAccount {
     /// @notice Retrieves the list smart contract address, that allow for usdt sub-account to interact with
     function getAllUsdtAddress() external view returns (address[] memory);
 
+    /// @notice reset all child parent relationship
+    function resetAllRelationship() external;
+
+    function resetAllRelationshipByIndex(uint64 size) external;
+
+    function resetAllRelationshipByPosition(address addr) external;
+
 
     // Emitted when a successful call is made to this precompile
     event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);

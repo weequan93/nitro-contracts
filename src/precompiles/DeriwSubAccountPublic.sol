@@ -25,6 +25,8 @@ interface DeriwSubAccountPublic {
      */
     function readAccountControl(address childAddress) external view returns (address);
 
+    function readAccountGranted(address parentAddress) external view returns (address);
+
     /**
      * @notice Check either sub-account session is still valid
      */
